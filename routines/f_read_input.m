@@ -16,72 +16,72 @@ fclose(fid);
 %% Set parameter for each non commented line
 number_of_lines=size(data{1},1);
 for i_line=1:number_of_lines    
-    param_type=strrep(data{1}{i_line},' ','');
-    param_field=strrep(data{2}{i_line},' ','');    
-    param_value=strrep(data{3}{i_line},' ','');
+  param_type=strrep(data{1}{i_line},' ','');
+  param_field=strrep(data{2}{i_line},' ','');    
+  param_value=strrep(data{3}{i_line},' ','');
     
-    switch param_type
-        %% geometrical parameters
-        case 'geometrical'
-            switch param_field
-                case 'spatial_dimension'                    
-                    parameters.geometrical.spatial_dimension=uint16(str2double(param_value));
-                case 'specimen'                    
-                    parameters.geometrical.specimen=param_value;
-                case 'size'                    
-                    parameters.geometrical.size=str2double(param_value);
-                otherwise
-                    warning(['Parameter field "' param_type '.' param_field '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored'])
-            end
-        
-        %% Parameter of the random field distribution
-        case 'rf_distribution'
-            switch param_field
-                case 'type'                    
-                    parameters.rf_distribution.type=param_value;
-                case 'mean'                    
-                    parameters.rf_distribution.mean=str2double(param_value);
-                case 'variance'
-                    parameters.rf_distribution.variance=str2double(param_value);
-                case 'rmean'                    
-                    parameters.rf_distribution.rmean=str2double(param_value);
-                case 'rvariance'
-                    parameters.rf_distribution.rvariance=str2double(param_value);
-                case 'degree_of_freedom'
-                    parameters.rf_distribution.degree_of_freedom=uint16(str2double(param_value));
-                otherwise
-                    warning(['Parameter field "' param_type '.' param_field '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored'])
-            end
-
-
-        %% Parameter of the random field correlation
-        case 'rf_correlation'
-            switch param_field
-                case 'type'                    
-                    parameters.rf_correlation.type=param_value;
-                case 'correlation_length'                    
-                    parameters.rf_correlation.correlation_length=str2double(param_value);
-                otherwise
-                    warning(['Parameter field "' param_type '.' param_field '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored'])
-            end
-
-
-        %% Parameter of the hitting set
-        case 'hitting_set'
-            switch param_field
-                case 'type'                    
-                    parameters.hitting_set.type=param_value;
-                otherwise
-                    warning(['Parameter field "' param_type '.' param_field '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored'])
-            end
-
-            
-            
-            
-        %% Non implemented parameters
-        otherwise
-            warning(['Parameter type "' param_type '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored.'])
+  switch param_type
+    %% geometrical parameters
+   case 'geometrical'
+    switch param_field
+     case 'spatial_dimension'                    
+      parameters.geometrical.spatial_dimension=uint16(str2double(param_value));
+     case 'specimen'                    
+      parameters.geometrical.specimen=param_value;
+     case 'size'                    
+      parameters.geometrical.size=str2double(param_value);
+     otherwise
+      warning(['Parameter field "' param_type '.' param_field '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored'])
     end
+	    
+    %% Parameter of the random field distribution
+   case 'rf_distribution'
+    switch param_field
+     case 'type'                    
+      parameters.rf_distribution.type=param_value;
+     case 'mean'                    
+      parameters.rf_distribution.mean=str2double(param_value);
+     case 'variance'
+      parameters.rf_distribution.variance=str2double(param_value);
+     case 'rmean'                    
+      parameters.rf_distribution.rmean=str2double(param_value);
+     case 'rvariance'
+      parameters.rf_distribution.rvariance=str2double(param_value);
+     case 'degree_of_freedom'
+      parameters.rf_distribution.degree_of_freedom=uint16(str2double(param_value));
+     otherwise
+      warning(['Parameter field "' param_type '.' param_field '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored'])
+    end
+
+
+    %% Parameter of the random field correlation
+   case 'rf_correlation'
+    switch param_field
+     case 'type'                    
+      parameters.rf_correlation.type=param_value;
+     case 'correlation_length'                    
+      parameters.rf_correlation.correlation_length=str2double(param_value);
+     otherwise
+      warning(['Parameter field "' param_type '.' param_field '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored'])
+    end
+
+
+    %% Parameter of the hitting set
+   case 'hitting_set'
+    switch param_field
+     case 'type'                    
+      parameters.hitting_set.type=param_value;
+     otherwise
+      warning(['Parameter field "' param_type '.' param_field '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored'])
+    end
+	    
+    
+            
+            
+    %% Non implemented parameters
+   otherwise
+    warning(['Parameter type "' param_type '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored.'])
+  end
 end
 
 
@@ -179,11 +179,7 @@ end
 %% Display
 field_names=fieldnames(parameters);
 for i_disp=1:size(field_names,1)
-    display(['     --> ' field_names{i_disp}])
-    display(getfield(parameters,field_names{i_disp}))
+  display(['     --> ' field_names{i_disp}])
+  display(getfield(parameters,field_names{i_disp}))
 end
 
-
-
-
-end

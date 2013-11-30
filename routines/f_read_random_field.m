@@ -23,20 +23,18 @@ display(' ')
 display('     --> Formating data...')
 
 switch rf_dimension
-    case {1, 2}
-        for i=1:n_points
-            tmp=regexp(strrep(rf_field{1}{i},' ',''),',','split');
-            for j=1:n_rea
-                random_fields.Values(i,j)=str2double(tmp{j});
-            end
-        end
-        if(rf_dimension==1)
-            random_fields.Points=linspace(0,random_fields.Size,random_fields.NPoints);
-        end
-    otherwise
-        error('This dimension is not implemented yet')
+ case {1, 2}
+  for i=1:n_points
+    tmp=regexp(strrep(rf_field{1}{i},' ',''),',','split');
+    for j=1:n_rea
+      random_fields.Values(i,j)=str2double(tmp{j});
+    end
+  end
+  if(rf_dimension==1)
+    random_fields.Points=linspace(0,random_fields.Size,random_fields.NPoints);
+  end
+ otherwise
+  error('This dimension is not implemented yet')
 end
 
-
-end
 

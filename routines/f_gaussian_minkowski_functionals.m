@@ -8,48 +8,48 @@ std=sqrt(rf_distribution.variance);
 kappa=hitting_set.thresholds;
 
 switch rf_distribution.type
-    case {'gaussian', 'lognormal'}        
-        if(strcmp(rf_distribution.type,'lognormal'))
-            if(find(kappa<=0))
-                error('Threshold values for "lognormal" distribution must be strictly positive.')
-            end
-            kappa=log(kappa);        
-        end
-        switch hitting_set.type
-            case 'tail'
-                switch number            
-                    case 0
-                        gmf=0.5*(1-erf((kappa-mean)/(sqrt(2)*std)));
-                    case 1
-                        gmf=exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std);
-                    case 2
-                        gmf=(kappa-mean)/std.*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^2);
-                    case 3
-                        gmf=((kappa-mean).^2/std^2-1).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^3);  
-                    case 4
-                        gmf=((kappa-mean).^3/std^3-3*(kappa-mean)/std).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^3);
-                    otherwise
-                        error(error_gmf_not_imlemented)
-                end
-            case 'cumulative'
-                switch number            
-                    case 0
-                        gmf=0.5*(1+erf((kappa-mean)/(sqrt(2)*std)));
-                    case 1
-                        gmf=exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std);
-                    case 2
-                        gmf=-(kappa-mean)/std.*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^2);
-                    case 3
-                        gmf=((kappa-mean).^2/std^2-1).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^3);
-                    case 4
-                        gmf=-((kappa-mean).^3/std^3-3*(kappa-mean)/std).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^3);
-                    otherwise
-                        error(error_gmf_not_imlemented);
-                end                                
-            otherwise
-                error(error_hitting_set_not_implemented)
-        end
-        
+ case {'gaussian', 'lognormal'}        
+  if(strcmp(rf_distribution.type,'lognormal'))
+    if(find(kappa<=0))
+      error('Threshold values for "lognormal" distribution must be strictly positive.')
+    end
+    kappa=log(kappa);        
+  end
+  switch hitting_set.type
+   case 'tail'
+    switch number            
+     case 0
+      gmf=0.5*(1-erf((kappa-mean)/(sqrt(2)*std)));
+     case 1
+      gmf=exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std);
+     case 2
+      gmf=(kappa-mean)/std.*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^2);
+     case 3
+      gmf=((kappa-mean).^2/std^2-1).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^3);  
+     case 4
+      gmf=((kappa-mean).^3/std^3-3*(kappa-mean)/std).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^3);
+     otherwise
+      error(error_gmf_not_imlemented)
+    end
+   case 'cumulative'
+    switch number            
+     case 0
+      gmf=0.5*(1+erf((kappa-mean)/(sqrt(2)*std)));
+     case 1
+      gmf=exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std);
+     case 2
+      gmf=-(kappa-mean)/std.*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^2);
+     case 3
+      gmf=((kappa-mean).^2/std^2-1).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^3);
+     case 4
+      gmf=-((kappa-mean).^3/std^3-3*(kappa-mean)/std).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^3);
+     otherwise
+      error(error_gmf_not_imlemented);
+    end                                
+   otherwise
+    error(error_hitting_set_not_implemented)
+  end
+  
 %    case 'chi_square'
 %        k=rf_distribution.degree_of_freedom;   
 %        switch number
@@ -70,10 +70,8 @@ switch rf_distribution.type
     
         
     %% Other distributions
-    otherwise
-        error(['Parameter "rf_distribution.type" is not implemented yet for the value = ' num2str(rf_distribution.type) '.'])
+ otherwise
+  error(['Parameter "rf_distribution.type" is not implemented yet for the value = ' num2str(rf_distribution.type) '.'])
 end
 
-
-end
 

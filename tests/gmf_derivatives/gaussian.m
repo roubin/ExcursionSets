@@ -1,8 +1,9 @@
 %% Initial
 clear all; addpath('../../routines');
+input_file_folder='input';
 
 %% 
-input_file_folder='.'; input_file_name='gaussian.es';
+input_file_name='gaussian_tail.es';
 p=f_read_input(input_file_folder, input_file_name);
 p.hitting_set.thresholds=f_set_thresholds(-5,5,0.01);
 
