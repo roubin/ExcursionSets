@@ -1,18 +1,19 @@
 %% Initial
 clear all; addpath('../../routines');
+input_file_folder='input';
 
 %% th ELKC and derivatives
-input_file_folder='.'; input_file_name='lognormal_1D.es';
+input_file_name='lognormal_1D.es';
 p=f_read_input(input_file_folder, input_file_name);
-p.hitting_set.thresholds=f_set_thresholds(0.01,1.5,0.01);
+p.hitting_set.thresholds=f_set_thresholds(-3, 3, 0.01, 'log10');
 p=f_set_gauss_parameter(p);
 
-elkc=@(j)              f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, p.hitting_set);
-delkc=@(j) f_elkc_derivatives(j, p.geometrical, p.rf_distribution, p.rf_correlation, p.hitting_set);
+elkc=@(j)  f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, p.hitting_set);
+delkc=@(j) f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, p.hitting_set, 'derivative');
 
 %% Plot
-figure(1); plot(p.hitting_set.thresholds,[elkc(1) delkc(1)], [0 1.5], [0 0], '--k', [0 0], [0 100], '--k'); legend('elck1', 'delkc1')
-figure(2); plot(p.hitting_set.thresholds,[elkc(0) delkc(0)], [0 1.5], [0 0], '--k', [0 0], [0 6], '--k'); legend('elck0', 'delkc0')
+figure(1); semilogx(p.hitting_set.thresholds,[elkc(1) delkc(1)], [0 1.5], [0 0], '--k', [0 0], [0 100], '--k'); legend('elck1', 'delkc1')
+figure(2); semilogx(p.hitting_set.thresholds,[elkc(0) delkc(0)], [0 1.5], [0 0], '--k', [0 0], [0 6], '--k'); legend('elck0', 'delkc0')
 
 %% find maximum
 
@@ -24,10 +25,10 @@ for l=1:size(lengths,2)
     p.geometrical.size=lengths(1,l);
     display(['Size=' num2str(p.geometrical.size)])
     elkc=@(j)f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, p.hitting_set);
-    delkc=@(j)f_elkc_derivatives(j, p.geometrical, p.rf_distribution, p.rf_correlation, p.hitting_set);
+    delkc=@(j)f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, p.hitting_set, 'derivative');
     
     elkcx=@(j,x) f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, struct('type', p.hitting_set.type, 'thresholds', x));
-    delkcx=@(j,x) f_elkc_derivatives(j, p.geometrical, p.rf_distribution, p.rf_correlation, struct('type', p.hitting_set.type, 'thresholds', x));
+    delkcx=@(j,x) f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, struct('type', p.hitting_set.type, 'thresholds', x), 'derivative');
 
     xmin=1e-6;
     xmax=1e3;
