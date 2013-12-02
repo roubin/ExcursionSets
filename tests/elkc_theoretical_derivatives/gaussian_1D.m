@@ -11,5 +11,5 @@ elkc=@(j) f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, p.hittin
 delkc=@(j) f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, p.hitting_set, 'derivative');
 
 %% Plot
-figure(1); plot(p.hitting_set.thresholds,[elkc(1) delkc(1)], [-5 5], [0 0], '--k', [0 0], [0 100], '--k');
-figure(2); plot(p.hitting_set.thresholds,[elkc(0) delkc(0)], [-5 5], [0 0], '--k', [0 0], [-2 6], '--k');
+figure(1); plot(p.hitting_set.thresholds,[elkc(1) delkc(1)], [-5 5], [0 0], '--k', [0 0], [-40 100], '--k');
+figure(2); plot(p.hitting_set.thresholds,[elkc(0) delkc(0)], [-5 5], [0 0], '--k', [0 0], [-20 50], '--k');
