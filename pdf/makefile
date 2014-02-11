@@ -1,8 +1,13 @@
 texname=Handbook
-#texsrc=/usr/texbin/
-#gssrc=/usr/local/bin/
-texsrc=''
-gssrc=''
+
+
+ifeq ($(shell uname), Darwin)
+	texsrc=/usr/texbin/
+	gssrc=/usr/local/bin/
+else
+	texsrc=''
+	gssrc=''
+endif
 
 
 all:
