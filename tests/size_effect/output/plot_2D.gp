@@ -1,3 +1,5 @@
+set term epslatex
+
 #SET LINE STYLE
 set style line 1 lt 1 lw 2 pt 1 ps 0.5 lc rgb "#0060ad" #--blue
 set style line 2 lt 1 lw 2 pt 1 ps 0.5 lc rgb "#dd181f" #--red
@@ -30,7 +32,7 @@ set xlabel "$\\lset$"
 set xtics nomirror
 set ytics nomirror
 
-set term epslatex;
+
 
 set xrange [0.001:100]
 set logscale x
@@ -51,7 +53,6 @@ plot "size_effect_2D_different_Euler_behaviors_l2.5.dat" u ($1):($2) notitle "Th
 
 set output "./figures/size_effect_2D_different_Euler_behaviors_l8.eps"
 plot "size_effect_2D_different_Euler_behaviors_l8.dat" u ($1):($2) notitle "Theoretical" w l ls 1 
-
 
 
 
