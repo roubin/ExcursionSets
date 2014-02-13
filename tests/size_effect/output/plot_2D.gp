@@ -37,7 +37,7 @@ set ytics nomirror
 set xrange [0.001:100]
 set logscale x
 
-set ylabel "Euler characteristic" rotate by 90
+set ylabel "Euler characteristic $\\EC$" rotate by 90
 
 set output "./figures/size_effect_2D_different_Euler_behaviors_l0.001.eps"
 plot "size_effect_2D_different_Euler_behaviors_l0.001.dat" u ($1):($2) notitle "Theoretical" w l ls 1 

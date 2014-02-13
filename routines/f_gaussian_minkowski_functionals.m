@@ -11,8 +11,22 @@ switch rf_distribution.type
  case {'gaussian', 'lognormal'}        
   if(strcmp(rf_distribution.type,'lognormal'))
     if(find(kappa<=0))
-      error('Threshold values for "lognormal" distribution must be strictly positive.')
-    end
+      switch number
+        case 0
+          switch hitting_set.type
+            case 'tail'
+              gmf=1.0;
+            case 'cumulative'
+              gmf=0.0;
+            otherwise
+              error(error_gmf_not_imlemented)
+         end
+      otherwise
+        gmf=0.0;
+      end
+      warning(['Threshold values for "lognormal" distribution must be strictly positive. Return value of gmf is ' num2str(gmf)])
+      return
+    end    
     kappa=log(kappa);        
   end
   switch hitting_set.type

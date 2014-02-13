@@ -6,58 +6,62 @@ input_file_folder='input'; input_file_name='lognormal_2D.es';
 p=f_read_input(input_file_folder, input_file_name);
 p=f_set_gauss_parameter(p);
 
+% threshold research zone
+p.hitting_set.thresholds=f_set_thresholds(-2,5,0.01, 'log10');
+
 
 %% size effect
-lengths=10.^(-3:0.1:1);
-lengths=[0.001 0.8 2.5 8]
+lengths=10.^(0.5:0.01:2);
+%lengths=[0.001 0.8 2.5 8];
 failure_stress=zeros(size(lengths));
 
 %y_to_finds=[0.01 0.05 0.10 0.50 0.90 0.95 0.99];
 y_to_finds=0.5;
+
+
+
+
 for q=1:size(y_to_finds,2)
     y_to_find=y_to_finds(1,q);
+
+    list_x01=0.0*lengths;
+    list_x02=0.0*lengths;
+    
     display(['quantile=' num2str(y_to_find)])
     for l=1:size(lengths,2)
         display(['  length=' num2str(lengths(1,l))])
         p.geometrical.size=lengths(1,l);
+        
         th_elkc=@(j,hs) f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, hs);
 
-        %% Plot
-        p.hitting_set.thresholds=f_set_thresholds(-3,2,0.01, 'log10');
-        figure(1); semilogx(p.hitting_set.thresholds,th_elkc(2,p.hitting_set));
-        figure(2); semilogx(p.hitting_set.thresholds,th_elkc(1,p.hitting_set));
-        figure(3); semilogx(p.hitting_set.thresholds,th_elkc(0,p.hitting_set), [0.001 5], [0 0], '--k', [0.001 5], [1 1], '--r');
+        % find maximum
+        n_lkc=0; x_zero=min(p.hitting_set.thresholds); x_infi=max(p.hitting_set.thresholds);
+
+        func=@(t) f_elkc(n_lkc, p.geometrical, p.rf_distribution, p.rf_correlation, struct('type',p.hitting_set.type,'thresholds',t));
+        [x_min, y_min]=fminbnd(func,x_zero,x_infi);
+        %display(['Find minimum value of LKC0: x_min=' num2str(x_min) ' y_min=' num2str(y_min)])
         
+        func=@(t) -f_elkc(n_lkc, p.geometrical, p.rf_distribution, p.rf_correlation, struct('type',p.hitting_set.type,'thresholds',t));      
+        [x_max, y_max]=fminbnd(func,x_zero,x_min); y_max=-y_max;
+        %display(['Find maximum value of LKC0: x_max=' num2str(x_max) ' y_max=' num2str(y_max)])
 
-%        %% find maximum
-%        n_lkc=0; x_zero=0.000000001; x_infi=100000;
-%        func=@(t) -f_elkc(n_lkc, p.geometrical, p.rf_distribution, p.rf_correlation, struct('type',p.hitting_set.type,'thresholds',t));
-%        [x_max, y_max]=fminbnd(func,x_zero,x_infi); y_max=-y_max;
-%        %display(['Find maximum value of LKC0: x_max=' num2str(x_max) ' y_max=' num2str(y_max)])
+        
+        if(sign(y_max*y_min)<0.0)
+            [x_01, y_01]=fzero(func,[x_max x_min]);
+            [x_02, y_02]=fzero(func,[x_min x_infi]);
+            list_x01(l)=x_01;
+            list_x02(l)=x_02;
+            
+            figure(3); semilogx(p.hitting_set.thresholds,-func(p.hitting_set.thresholds), [x_min x_min], [0 y_min], '--g', [x_max x_max], [0 y_max], '--r', [x_01 x_01], [y_01 y_01],'*r', [x_02 x_02], [y_02 y_02],'*r', [x_zero x_infi], [0 0], '--k');
+        else
+            figure(3); semilogx(p.hitting_set.thresholds,-func(p.hitting_set.thresholds), [x_min x_min], [0 y_min], '--g', [x_max x_max], [0 y_max], '--r', [0.001 100], [0 0], '--k');
+        end
 
-%        %% find zeros
-%        problem.objective=@(t) f_elkc(n_lkc, p.geometrical, p.rf_distribution, p.rf_correlation, struct('type',p.hitting_set.type,'thresholds',t)) - y_to_find;
-%        problem.x0=[x_zero x_max];
-%        problem.solver='fzero';
-%        problem.options=optimset(@fzero);
-%        [x_a,y_a]=fzero(problem); y_a=y_a+y_to_find;
-%        %display(['Find first zero value of LKC0: x_a=' num2str(x_a) ' y_a=' num2str(y_a)])
-%        %problem.x0=[x_max x_infi];
-%        %[x_b,y_b]=fzero(problem); y_b=y_b+y_to_find;
-
-%        plot(p.hitting_set.thresholds,th_elkc(n_lkc,p.hitting_set), x_max, y_max, '.', x_a, y_a, '+');
-%        %plot(p.hitting_set.thresholds,th_elkc(n_lkc,p.hitting_set), x_max, y_max, '.', x_a, y_a, '+',  x_b, y_b, '+');
-%        failure_stress(1,l)=x_a;    
-
-        % Gnuplot Output
-        output_file_folder='output'; output_file_name=['size_effect_2D_different_Euler_behaviors_l' num2str(lengths(1,l)) '.dat'];
-        f_write_gnuplot_output(output_file_folder, output_file_name, p.hitting_set.thresholds, th_elkc(0, p.hitting_set));
-
-    
+        
     end
-%    loglog(lengths, failure_stress)
+    figure(4); loglog(lengths, list_x01, lengths, list_x02)
 
-    % Gnuplot Output
+    %% Gnuplot Output
 %    output_file_folder='.'; output_file_name=['size_effect_2D_m' num2str(p.rf_distribution.rmean) '_v' num2str(p.rf_distribution.rvariance) '_q' num2str(y_to_find) '.dat'];
 %    f_write_gnuplot_output(output_file_folder, output_file_name, lengths', failure_stress');
 
