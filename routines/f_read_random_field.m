@@ -23,7 +23,7 @@ display(' ')
 display('     --> Formating data...')
 
 switch rf_dimension
- case {1, 2}
+ case {1, 2, 3}
   for i=1:n_points
     tmp=regexp(strrep(rf_field{1}{i},' ',''),',','split');
     for j=1:n_rea

@@ -2,10 +2,10 @@
 library('RandomFields')
 
 dim <- 2
-n_rea <- 1
+n_rea <- 3
 
 size <- 100
-step <- 0.1
+step <- 1
 
 mean <- 0.0
 variance <- 2
@@ -43,10 +43,10 @@ if(n_rea==1){
 dev.off()
 
 #print('PLOT VTK')
-#source("/home/eroubin/Dropbox/ExcursionSets/cran-r/routines/CreateVTKFile.R")
+#source("/home/eroubin/Work/ExcursionSets/cran-r/routines/CreateVTKFile.R")
 #dim <- 2
 #CreateVTKFile(RF[,,1],size,dim)
 
 print('PLOT TXT')
-source("/home/eroubin/Dropbox/ExcursionSets/cran-r/routines/CreateTXTFile.R")
+source("/home/eroubin/Work/ExcursionSets/cran-r/routines/CreateTXTFile.R")
 CreateTXTFile(RF, n_rea, size, dim, 'output', 'gaussian_random_field_2D')
