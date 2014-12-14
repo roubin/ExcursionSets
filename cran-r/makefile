@@ -1,4 +1,4 @@
-name=generate_Gauss_RF_2D
+name=generate_Gauss_RF_3D
 
 
 all:

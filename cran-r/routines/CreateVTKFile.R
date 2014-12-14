@@ -1,5 +1,6 @@
 CreateVTKFile<-function(RF,T,dim){
 library('pracma')
+
 #RANDOM FIELD NAME
 	RFName <- paste("RF_T",T,sep="")
 #FILE NAME
@@ -21,13 +22,29 @@ library('pracma')
 		coord <- cbind(b, sort(b), 0.0*a)
 	}
 	else {
-		N <- length(RF[1,1,])
-		Ny <- N
-		Nz <- N
-		a <- seq(0,T,T/(N-1))
-		b <- t(repmat(a,1,N))
-		c <- t(repmat(a,1,N**2))
-		coord <- cbind(c, t(repmat(sort(b),1,N)), sort(c))
+		N <- size(RF)
+		print(N)
+		Nx <- N[1]
+		Ny <- N[2]
+		Nz <- N[3]
+		Tx <- T[1]
+		Ty <- T[2]
+		Tz <- T[3]
+		x <- seq(0,Tx,Tx/(Nx-1))
+		y <- seq(0,Ty,Ty/(Ny-1))
+		z <- seq(0,Tz,Tz/(Nz-1))
+		
+		a <- t(repmat(x,1,Ny*Nz))
+		b <- t(repmat(sort(t(repmat(y,1,Nx))),1,Nz))
+		c <- sort(b)
+		coord <- cbind(a,b,c)
+
+		RFName <- paste("RF_Tx",Tx,sep="")
+		RFName <- paste(RFName,Ty,sep="_Ty")
+		RFName <- paste(RFName,Tz,sep="_Tz")
+		#FILE NAME
+		FileName <- paste(RFName, ".vtk", sep="")
+
 	}
 
 	myFile <- file(FileName, open = "w")
@@ -38,12 +55,12 @@ library('pracma')
 	cat(text, file = myFile)
 	text <- "ASCII\nDATASET STRUCTURED_GRID\n"
 	cat(text, file = myFile)
-	text <- paste("DIMENSIONS", N, Ny, Nz, "\n")
+	text <- paste("DIMENSIONS", Nx, Ny, Nz, "\n")
 	cat(text, file = myFile)
-	text <- paste("POINTS", N**dim, "float\n")
+	text <- paste("POINTS", Nx*Ny*Nz, "float\n")
 	cat(text, file = myFile)
 	write(t(coord), file = myFile, ncolumns = 3, append = FALSE, sep = "\t")
-	text <- paste("\nPOINT_DATA", N**dim, "\n")
+	text <- paste("\nPOINT_DATA", Nx*Ny*Nz, "\n")
 	cat(text, file = myFile)
 	text <- paste("SCALARS", RFName, "float 1\n")
 	cat(text, file = myFile)
