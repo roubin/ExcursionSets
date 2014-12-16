@@ -1,11 +1,11 @@
 #load library
 library('RandomFields')
 
-dim <- 1
+dim <- 3
 n_rea <- 1
 
 
-step <- 0.5
+step <- 1
 
 mean <- 0.0
 variance <- 2
@@ -27,7 +27,7 @@ param <- c(mean, variance, nugget, scale, alpha)
 #nu <- 2.0
 #param <- c(mean, variance, nugget, scale, nu)
 
-size <- c(100,20,20)
+size <- c(100,100,100)
 x <- seq(0, size[1], step) 
 y <- seq(0, size[2], step) 
 z <- seq(0, size[3], step) 
@@ -46,11 +46,13 @@ RF <- GaussRF(method=method, x=x, y=y, z=z, n=n_rea, model=model, grid=TRUE, par
 
 #dev.off()
 
-print('PLOT VTK')
-source("/Users/roubin/Work/ExcursionSets/cran-r/routines/CreateVTKFile.R")
+#print('PLOT VTK')
+#source("/Users/roubin/Work/ExcursionSets/cran-r/routines/CreateVTKFile.R")
+source("/home/eroubin/Work/ExcursionSets/cran-r/routines/CreateVTKFile.R")
 dim <- 3
 CreateVTKFile(RF,size,dim)
 
-#print('PLOT TXT')
+print('PLOT TXT')
 #source("/Users/roubin/Work/ExcursionSets/cran-r/routines/CreateTXTFile.R")
-#CreateTXTFile(RF, n_rea, size, dim, 'output', 'gaussian_random_field_3D')
+#source("/home/eroubin/Work/ExcursionSets/cran-r/routines/CreateTXTFile.R")
+#CreateTXTFile(RF, n_rea, size, dim)

@@ -35,7 +35,14 @@ switch n_func
   fprintf(fid,'%f %f %f %f %f %f %f %f %f\n', [x y].');
  case 9
   fprintf(fid,'%f %f %f %f %f %f %f %f %f %f\n', [x y].');
- otherwise
+ case 10
+  fprintf(fid,'%f %f %f %f %f %f %f %f %f %f %f\n', [x y].');
+ case 11
+  fprintf(fid,'%f %f %f %f %f %f %f %f %f %f %f %f\n', [x y].');
+ case 12
+  fprintf(fid,'%f %f %f %f %f %f %f %f %f %f %f %f %f\n', [x y].');
+
+    otherwise
   warning(['Ploting ' num2str(n_func) ' is not implemented yet'])
 end
         

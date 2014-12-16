@@ -2,7 +2,7 @@
 clear all; addpath('../../routines');
 
 %% th ELKC
-input_file_folder='.'; input_file_name='lognormal_1D.es';
+input_file_folder='input'; input_file_name='lognormal_1D.es';
 p=f_read_input(input_file_folder, input_file_name);
 
 p.rf_distribution.rmean;

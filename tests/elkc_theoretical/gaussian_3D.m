@@ -1,5 +1,5 @@
 %% Initial
-clear all; addpath('../../routines');
+%clear all; addpath('../../routines');
 input_file_folder='input';
 output_file_folder='output';
 

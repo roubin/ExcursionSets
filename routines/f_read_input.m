@@ -30,6 +30,12 @@ for i_line=1:number_of_lines
       parameters.geometrical.specimen=param_value;
      case 'size'                    
       parameters.geometrical.size=str2double(param_value);
+     case 'sizeX'                    
+      parameters.geometrical.sizeX=str2double(param_value);
+     case 'sizeY'                    
+      parameters.geometrical.sizeY=str2double(param_value);
+     case 'sizeZ'                    
+      parameters.geometrical.sizeZ=str2double(param_value);
      otherwise
       warning(['Parameter field "' param_type '.' param_field '" on line ' num2str(i_line) ' is not implemented yet. The line is ignored'])
     end

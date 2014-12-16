@@ -6,14 +6,19 @@ rf_header=regexp(strrep(fgetl(fid),' ',''),',','split');
 rf_field=textscan(fid, '%s\n', 'CommentStyle', '%', 'bufsize',4956000);
 fclose(fid);
 
+rf_dimension=uint16(str2double(rf_header{end}));
 rf_size=str2double(rf_header{1});
-rf_dimension=uint16(str2double(rf_header{2}));
+
 
 tmp=regexp(strrep(rf_field{1}{1},' ',''),',','split');
 n_rea=size(tmp,2);
 n_points=size(rf_field{1},1);
 
-random_fields=struct('Dimension', rf_dimension, 'Type', 'cube', 'Size', rf_size, 'NRealisations', n_rea, 'NPoints', n_points, 'Values', zeros(n_points, n_rea));
+if(rf_dimension==3)
+    random_fields=struct('Dimension', rf_dimension, 'Type', 'cube', 'Size', rf_size, 'NRealisations', n_rea, 'NPoints', n_points, 'Values', zeros(n_points, n_rea), 'SizeX', str2double(rf_header{1}), 'NpointsX', str2double(rf_header{4}), 'SizeY', str2double(rf_header{2}), 'NpointsY', str2double(rf_header{5}), 'SizeZ', str2double(rf_header{3}), 'NpointsZ', str2double(rf_header{6}));
+else    
+    random_fields=struct('Dimension', rf_dimension, 'Type', 'cube', 'Size', rf_size, 'NRealisations', n_rea, 'NPoints', n_points, 'Values', zeros(n_points, n_rea));
+end
 display(['         Spatial Dimension      : ' num2str(rf_dimension)])
 display(['         Specimen size          : ' num2str(rf_size)])
 display(['         Number of realizations : ' num2str(n_rea)])

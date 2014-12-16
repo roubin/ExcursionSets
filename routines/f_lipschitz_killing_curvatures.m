@@ -5,21 +5,39 @@ error_dimension_not_implemented=['LKC in dimension ' num2str(geometrical.spatial
 error_specimen_not_implemented=['Specimen ' geometrical.specimen ' not implemented yet.'];
 
 switch geometrical.specimen
-  %% Cube
- case 'cube'        
-  switch geometrical.spatial_dimension
-   case {1, 2, 3}
-    if(number<=geometrical.spatial_dimension && number>=0)                    
-      lkc=double(nchoosek(double(geometrical.spatial_dimension), double(number))*geometrical.size.^double(number));
-    else
-      error(error_lkc_not_exist)
-    end
-   otherwise
-    error(error_dimension_not_implemented)
-  end
+    case 'cube'
+        switch geometrical.spatial_dimension
+            case {1, 2, 3}
+                if(number<=geometrical.spatial_dimension && number>=0)
+                    lkc=double(nchoosek(double(geometrical.spatial_dimension), double(number))*geometrical.size.^double(number));
+                else
+                    error(error_lkc_not_exist)
+                end
+            otherwise
+                error(error_dimension_not_implemented)
+        end
         
-    %% Other Specimens
- otherwise
-  error(error_specimen_not_implemented)
+    case 'para'
+        switch geometrical.spatial_dimension
+            case 3
+                switch number
+                    case 0
+                        lkc=0;
+                    case 1
+                        lkc=geometrical.sizeX+geometrical.sizeY+geometrical.sizeZ;
+                    case 2
+                        lkc=geometrical.sizeX*geometrical.sizeY+geometrical.sizeX*geometrical.sizeZ+geometrical.sizeY*geometrical.sizeZ;
+                    case 3
+                        lkc=geometrical.sizeX*geometrical.sizeY*geometrical.sizeZ;
+                    otherwise
+                        error(error_lkc_not_exist)
+                end
+            otherwise
+                error(error_dimension_not_implemented)
+        end
+        
+        %% Other Specimens
+    otherwise
+        error(error_specimen_not_implemented)
 end
 
