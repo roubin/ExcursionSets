@@ -1,5 +1,5 @@
 %% Initial
-%clear all; addpath('../../routines');
+clear all; addpath('../../routines');
 input_file_folder='input';
 output_file_folder='output';
 
@@ -18,7 +18,7 @@ figure(4); plot(p.hitting_set.thresholds,th_elkc(0,p.hitting_set));
 
 
 % Gnuplot Output
-output_file_name=[p.rf_distribution.type '_' num2str(p.geometrical.spatial_dimension) 'D_Lc' num2str(p.rf_correlation.correlation_length) '_th.dat'];
-txt1=['Theoretical ELKC ' num2str(p.geometrical.spatial_dimension) 'D with distribution=' p.rf_distribution.type ', hitting set= ' num2str(p.hitting_set.type) ' mean=' num2str(p.rf_distribution.mean) ', v=' num2str(p.rf_distribution.variance) ', Lc=' num2str(p.rf_correlation.correlation_length) '.'];
+output_file_name=[p.rf_distribution.type '_' num2str(p.geometrical.spatial_dimension) 'D_Lc' num2str(p.rf_correlation.correlation_length) '_' num2str(p.geometrical.sizeX) 'x' num2str(p.geometrical.sizeY) 'x' num2str(p.geometrical.sizeZ) '_th.dat'];
+txt1=['Theoretical ELKC ' num2str(p.geometrical.spatial_dimension) 'D with distribution=' p.rf_distribution.type ', hitting set= ' num2str(p.hitting_set.type) ' mean=' num2str(p.rf_distribution.mean) ', v=' num2str(p.rf_distribution.variance) ', Lc=' num2str(p.rf_correlation.correlation_length) ' in a cube of size ' num2str(p.geometrical.sizeX) 'x' num2str(p.geometrical.sizeY) 'x' num2str(p.geometrical.sizeZ) '.'];
 txt2='threshold ELKC0 ELKC1 ELKC2 ELKC3';
 f_write_gnuplot_output(output_file_folder, output_file_name, p.hitting_set.thresholds, [th_elkc(0, p.hitting_set), th_elkc(1, p.hitting_set), th_elkc(2, p.hitting_set), th_elkc(3, p.hitting_set)], txt1, txt2);
