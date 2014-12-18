@@ -34,9 +34,12 @@
 \subsubsection{Error function: $\erf$}
 \begin{equation}\erf(x)=\frac{2}{\sqrt\pi}\int_0^xe^{-t^2}dt\end{equation}
 \subsection{Lipschitz-Killing curvatures (LKC)}
-\subsubsection{For a cube in 1,2 and 3 dimensions}
+\subsubsection{For a regular shapes in 1,2 and 3 dimensions}
 \begin{equation}
-  \text{For} \ \ \MRF_N=\prod_{i=1}^{N}[0\ \Msize], \ \ \LKC_j(\MRF_N)= \left( \begin{array}{c} N \\ j \end{array} \right) \Msize^j
+  \text{For a cube} \ \ \MRF_N=\prod_{i=1}^{N}[0\ \Msize], \ \ \LKC_j(\MRF_N)= \left( \begin{array}{c} N \\ j \end{array} \right) \Msize^j
+\end{equation}
+\begin{equation}
+  \text{For a parallelepiped} \ \ \PRF_N=\prod_{i=1}^{N}[0\ \Msize_i], \ \ \LKC_j(\MRF_N)= \dots
 \end{equation}
 \begin{center}
   \begin{tabular}{c|c|c|l}
@@ -53,6 +56,11 @@
     $3$ & $\LKC_1(\MRF)$ & $3\Msize$ & Twice the caliper diameter \\
     $3$ & $\LKC_2(\MRF)$ & $3\Msize^2$ & Half the surface area \\
     $3$ & $\LKC_3(\MRF)$ & $\Msize^3$ & Volume \\
+    \hline
+    $3$ & $\LKC_0(\PRF)$ & $1$ & Euler Characteristic \\
+    $3$ & $\LKC_1(\PRF)$ & $\Msize_1+\Msize_2+\Msize_3$ & Twice the caliper diameter \\
+    $3$ & $\LKC_2(\PRF)$ & $\Msize_1\Msize_2+\Msize_1\Msize_3+\Msize_2\Msize_3$ & Half the surface area \\
+    $3$ & $\LKC_3(\PRF)$ & $\Msize_1\Msize_2\Msize_3$ & Volume \\
   \end{tabular}
 \end{center}
 
@@ -421,7 +429,7 @@ Notations:
   \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_3D_gaussian_1}}}\\
   \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_3D_gaussian_2}}}\hspace{1.2cm}
   \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_3D_gaussian_3}}}\\
-  \caption{Expectation of LKC for $\MRF=100\times 20 \times 20$, $\mean=0.0$, $\std^2=2$, $\Lc=2$, and $\HS=\uinf$ (gaussian distribution with tail hitting set) in 3D. Experimental results are calculated over $100$ realizations.}
+  \caption{Expectation of LKC for $\PRF=100\times 20 \times 20$, $\mean=0.0$, $\std^2=2$, $\Lc=2$, and $\HS=\uinf$ (gaussian distribution with tail hitting set) in 3D. Experimental results are calculated over $100$ realizations.}
 \end{figure}
 
 \begin{figure}[!h]
