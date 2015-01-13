@@ -1,26 +1,11 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[12pt]{article}
 
-%% SHORTCUTS
-\input{shortcuts_excursion_set}
-
-%% PACKAGES
-%\usepackage{amsfonts}
-\usepackage{amsmath} % for math fonts
-\usepackage{mathrsfs} % for \mathscr
-\usepackage{amsfonts} % for \mathbb
-
-
-\usepackage{graphicx}
-\usepackage{subfigure}
-
-%% TITLES
-\title{Handbook on excursion sets}
-\author{Emmanuel Roubin}
-\date{Version: \today}
-
+\input{inc/style_handbook}
+\input{inc/shortcuts_es}
 
 \begin{document}
-\maketitle
+\maintitle{Handbook on excursion sets}
+
 \tableofcontents
 \newpage
 \section{Priliminary calculations}
@@ -253,8 +238,9 @@ Identification:
 \end{equation}
 \begin{figure}[!h]
   \centering
+  \hspace*{\fill}
   \subfigure[$\HS=\HSC=\uinf$]{\scalebox{0.5}{\input{./figures/gmf_tail}}}\hfill
-  \subfigure[$\HS=\HSC=\minfu$]{\scalebox{0.5}{\input{./figures/gmf_cumulative}}}
+  \subfigure[$\HS=\HSC=\minfu$]{\scalebox{0.5}{\input{./figures/gmf_cumulative}}}\hspace*{\fill}
   \caption{First 4 GMF for $\std^2=2$}
 \end{figure}
 \item Derivatives:
@@ -373,15 +359,17 @@ Notations:
 
 \begin{figure}[!h]
   \centering
+  \hspace*{\fill}
   \subfigure[Euler Characteristic]{\scalebox{0.5}{\input{./figures/elkc_1D_LKC0}}}\hfill
-  \subfigure[Length]{\scalebox{0.5}{\input{./figures/elkc_1D_LKC1}}} 
+  \subfigure[Length]{\scalebox{0.5}{\input{./figures/elkc_1D_LKC1}}}\hspace*{\fill}
   \caption{Expectation of LKC for $\Msize=100$, $\std^2=2$ and $\HS=\uinf$ in 1D.}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
+  \hspace*{\fill}
   \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_1D_lognormal_0}}}\hfill
-  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_1D_lognormal_1}}} 
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_1D_lognormal_1}}}\hspace*{\fill}
   \caption{Expectation of LKC for $\Msize=100$, $\mean=0.5$, $\std^2=2$, $\Lc=0.5$, and $\HS=\zu$ (log-normal distribution with cumulative hitting set) in 1D. Experimental results are calculated over $1\,000$ realizations.}
 \end{figure}
 
@@ -398,17 +386,19 @@ Notations:
 
 \begin{figure}[!h]
   \centering
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_2D_gaussian_0}}}\hfill
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_2D_gaussian_1}}}\hfill
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_2D_gaussian_2}}} 
+  \hspace*{\fill}
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_2D_gaussian_0}}}\hfill
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_2D_gaussian_1}}}\hfill
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_2D_gaussian_2}}}\hspace*{\fill}
   \caption{Expectation of LKC for $\Msize=100$, $\mean=0.0$, $\std^2=2$, $\Lc=5$, and $\HS=\uinf$ (gaussian distribution with tail hitting set) in 2D. Experimental results are calculated over $1\,000$ realizations.}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_2D_lognormal_0}}}\hfill
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_2D_lognormal_1}}}\hfill
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_2D_lognormal_2}}} 
+  \hspace*{\fill}
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_2D_lognormal_0}}}\hfill
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_2D_lognormal_1}}}\hfill
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_2D_lognormal_2}}}\hspace*{\fill}
   \caption{Expectation of LKC for $\Msize=100$, $\mean=0.0$, $\std^2=2$, $\Lc=5$, and $\HS=\zu$ (lognormal distribution with cumulative hitting set) in 2D. Experimental results are calculated over $1\,000$ realizations.}
 \end{figure}
 
@@ -425,17 +415,18 @@ Notations:
 
 \begin{figure}[!h]
   \centering
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_3D_gaussian_0}}}\hspace{1.2cm}
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_3D_gaussian_1}}}\\
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_3D_gaussian_2}}}\hspace{1.2cm}
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_exp_3D_gaussian_3}}}\\
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_3D_gaussian_0}}}\hspace{1.2cm}
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_3D_gaussian_1}}}\\
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_3D_gaussian_2}}}\hspace{1.2cm}
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_3D_gaussian_3}}}\\
   \caption{Expectation of LKC for $\PRF=100\times 20 \times 20$, $\mean=0.0$, $\std^2=2$, $\Lc=2$, and $\HS=\uinf$ (gaussian distribution with tail hitting set) in 3D. Experimental results are calculated over $100$ realizations.}
 \end{figure}
 
 \begin{figure}[!h]
   \centering
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_th_3D_gaussian_0_constant_ratio}}}\hspace{1.2cm}
-  \subfigure{\scalebox{0.35}{\input{./figures/elkc_th_3D_gaussian_0_constant_area}}}
+    \hspace*{\fill}
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_th_3D_gaussian_0_constant_ratio}}}\hfill
+  \subfigure{\scalebox{0.5}{\input{./figures/elkc_th_3D_gaussian_0_constant_area}}}\hspace*{\fill}
   \caption{.}
 \end{figure}
 
@@ -444,9 +435,10 @@ Notations:
 \subsection{One dimensional case}
 \begin{figure}[!h]
   \centering
-  \subfigure[Variation of the quantile]{\scalebox{0.35}{\input{./figures/size_effect_failure_stress_m10_v10}}}\hfill
-  \subfigure[Variation of the variance]{\scalebox{0.35}{\input{./figures/size_effect_failure_stress_m10_q001}}} \hfill
-  \subfigure[Variation of the mean]{\scalebox{0.35}{\input{./figures/size_effect_failure_stress_v10_q001}}}
+    \hspace*{\fill}
+  \subfigure[Variation of the quantile]{\scalebox{0.5}{\input{./figures/size_effect_failure_stress_m10_v10}}}\hfill
+  \subfigure[Variation of the variance]{\scalebox{0.5}{\input{./figures/size_effect_failure_stress_m10_q001}}} \hfill
+  \subfigure[Variation of the mean]{\scalebox{0.5}{\input{./figures/size_effect_failure_stress_v10_q001}}}\hspace*{\fill}
   \caption{Size Effect: variations around $\meanln=10$, $\stdln^2=10$ and $q=1\%$ in 1D.}
 \end{figure}
 
@@ -455,10 +447,11 @@ Notations:
 \subsubsection{Behavior of the Euler characteristic for different specimen sizes}
 \begin{figure}[!h]
   \centering
-  \subfigure[$\Msize=0.001$\label{fig:2D:EC:small_size}]{\scalebox{0.35}{\input{./figures/size_effect_2D_different_Euler_behaviors_l0.001}}}\hfill
+  \hspace*{\fill}
+  \subfigure[$\Msize=0.001$\label{fig:2D:EC:small_size}]{\scalebox{0.5}{\input{./figures/size_effect_2D_different_Euler_behaviors_l0.001}}}\hfill
 %  \subfigure[$\Msize=0.8$]  {\scalebox{0.5}{\input{./figures/size_effect_2D_different_Euler_behaviors_l0.8}}}\\
-  \subfigure[$\Msize=2.5$\label{fig:2D:EC:medium_size}]  {\scalebox{0.35}{\input{./figures/size_effect_2D_different_Euler_behaviors_l2.5}}}\hfill
-  \subfigure[$\Msize=8$\label{fig:2D:EC:large_size}]    {\scalebox{0.35}{\input{./figures/size_effect_2D_different_Euler_behaviors_l8}}}
+  \subfigure[$\Msize=2.5$\label{fig:2D:EC:medium_size}]  {\scalebox{0.5}{\input{./figures/size_effect_2D_different_Euler_behaviors_l2.5}}}\hfill
+  \subfigure[$\Msize=8$\label{fig:2D:EC:large_size}]    {\scalebox{0.5}{\input{./figures/size_effect_2D_different_Euler_behaviors_l8}}}  \hspace*{\fill}
   \caption{Euler characteristic for different specimen sizes $\Msize$ for $\meanln=0.5$, $\stdln^2=2$, $\Lc=1$, and $\HS=\zu$ (lognormal distribution with cumulative hitting set) in a 2D.\label{fig:2D:EC}}
 \end{figure}
 

@@ -1,0 +1,122 @@
+%%%%%%%%%%%%
+%%%% PACKAGE
+%%%%%%%%%%%%
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}
+%\usepackage[frenchb]{babel}
+\usepackage{times}
+\usepackage{mltex}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{array}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{lastpage}
+\usepackage{fancyhdr,etoolbox}
+\usepackage{ifthen}
+\usepackage{fancyhdr,etoolbox}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{pstricks}
+\usepackage{thmbox}
+\usepackage[
+breaklinks,
+colorlinks=true,
+linkcolor=black,
+urlcolor=black,
+citecolor=black
+]{hyperref}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+
+%%%%%%%%%%%%
+%%%% MARGING
+%%%%%%%%%%%%
+%\usepackage{geometry}
+%\oddsidemargin = 21pt %31pt
+%\topmargin = 0pt %20pt
+%\headheight = 12pt
+%\headsep = 25pt
+%\textheight = 592pt
+%\textwidth = 430pt %390pt
+%\marginparsep = 10pt
+%\marginparwidth = 35pt
+%\footskip = 30pt
+\usepackage[%
+papersize={200mm,250mm},%
+margin=2mm,%
+includeheadfoot%
+]{geometry}
+\pagestyle{fancy}
+
+%%%%%%%%%%%
+%%%% HEADER
+%%%%%%%%%%%
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.0pt}
+\makeatletter
+\patchcmd{\@fancyhead}{\rlap}{\color{gray}\rlap}{}{}
+\patchcmd{\headrule}{\hrule}{\color{gray}\hrule}{}{}
+\patchcmd{\@fancyfoot}{\rlap}{\color{gray}\rlap}{}{}
+\patchcmd{\footrule}{\hrule}{\color{gray}\hrule}{}{}
+\makeatother
+
+%\renewcommand{\footrulewidth}{0.5pt}
+\fancyhead{}
+\rhead{\textit{Emmanuel ROUBIN}}
+\chead{}
+\lhead{\today}
+%\rfoot{page \thepage\ sur \pageref{LastPage}}
+\rfoot{\thepage/\pageref*{LastPage}}
+%\lfoot{\today}
+\lfoot{}
+\cfoot{}
+
+
+%%%%%%%%%%
+%%%% TITLE
+%%%%%%%%%%
+\newcommand{\maintitle}[2][YYY]{%
+  \ifthenelse { \equal {#1} {YYY} }
+              { \chead{#2} }
+              { \chead{#1} }
+  \begin{center}
+    \textsc{\Large #2}
+    \par\vspace{0.5cm}
+  \end{center}
+}
+
+%%%%%%%%%%%%
+%%%% SECTION
+%%%%%%%%%%%%
+%\renewcommand{\thesection}{\Roman{section}}
+%\renewcommand{\thesubsection}{\Roman{subsection}}
+%\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+%\titleformat{⟨command⟩}[⟨shape⟩]{⟨format⟩}{⟨label⟩}{⟨sep⟩}{⟨before-code⟩}[⟨after-code⟩]
+\titleformat{\section}[block]{\scshape}{\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}[block]{\scshape}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[block]{}{\thesubsubsection}{1em}{\vspace{-0.2cm}}
+
+%%%%%%%%%%%
+%%%% DIVERS
+%%%%%%%%%%%
+\newcommand{\boxnote}[2]{%
+	\vspace{0.5cm}
+%	\noindent\begin{thmbox}[L, cut=false]{\empty\hspace{2cm}\empty}
+	%L -> 3/4 box
+	%M -> 1/2 box
+	%S -> vertical line
+ 	\begin{thmbox}[S, cut=true]{#1}
+		#2
+	\end{thmbox}
+}
+
+\newenvironment{descriptionInline}{ 
+	\begin{description}[itemsep=1pt,leftmargin=0.5em]
+}{
+	\end{description}
+}
