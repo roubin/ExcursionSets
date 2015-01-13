@@ -1,4 +1,4 @@
-texname=Handbook
+name=Handbook
 
 
 ifeq ($(shell uname), Darwin)
@@ -11,19 +11,35 @@ endif
 
 
 all:
-	@${texsrc}latex  ${texname}.tex
-	@${texsrc}latex  ${texname}.tex
-	@${texsrc}latex  ${texname}.tex
-	@${texsrc}dvips -q ${texname}.dvi
-	@${gssrc}ps2pdf ${texname}.ps
+	@make clean
+	@make ref
+	@make pdf
 	@make clean
 
+pdf:
+	@${texsrc}dvips ${name}.dvi
+	@${gssrc}ps2pdf ${name}.ps
+
+ref:
+	@${texsrc}latex ${name}.tex
+	@${texsrc}bibtex ${name}
+	@${texsrc}latex ${name}.tex
+	@${texsrc}latex ${name}.tex
+	@${texsrc}latex ${name}.tex
 
 clean:
-	@rm -fv ${texname}.aux
-	@rm -fv ${texname}.log
-	@rm -fv ${texname}.out
-	@rm -fv ${texname}.toc
-	@rm -fv ${texname}.ps
-	@rm -fv ${texname}.dvi
+	@rm -fv ${name}.tns
+	@rm -fv ${name}.ps
+	@rm -fv ${name}.odt
+	@rm -fv ${name}.log
+	@rm -fv ${name}.dvi
+	@rm -fv ${name}.aux
+	@rm -fv ${name}.bbl
+	@rm -fv ${name}.blg
+	@rm -fv ${name}.out
+	@rm -fv ${name}.toc
 	@rm -fv *~
+
+erase:
+	@make clean
+	@rm -fv ${name}.pdf

@@ -25,38 +25,40 @@ set xtics nomirror
 set ytics nomirror
 
 set xrange [-5:5]
+set xrange [1e-3:1e3]
+set logscale x
 
 set style fill transparent solid 0.2
 
-plot "gaussian_3D_Lc5_100x10x10_th.dat" u ($1):($2); max_A = GPVAL_DATA_Y_MAX
-plot "gaussian_3D_Lc5_200x20x20_th.dat" u ($1):($2); max_B = GPVAL_DATA_Y_MAX
-plot "gaussian_3D_Lc5_400x40x40_th.dat" u ($1):($2); max_C = GPVAL_DATA_Y_MAX
+plot "lognormal_3D_Lc5_100x10x10_th.dat" u ($1):($2); max_A = GPVAL_DATA_Y_MAX
+plot "lognormal_3D_Lc5_200x20x20_th.dat" u ($1):($2); max_B = GPVAL_DATA_Y_MAX
+plot "lognormal_3D_Lc5_400x40x40_th.dat" u ($1):($2); max_C = GPVAL_DATA_Y_MAX
 
 
 set term epslatex;
-set output "./figures/elkc_th_3D_gaussian_0_constant_ratio.eps"
+set output "./figures/elkc_th_3D_lognormal_0_constant_ratio.eps"
 set ylabel "Euler characteristic" rotate by 90
 set key b r
-plot "gaussian_3D_Lc5_100x10x10_th.dat" u ($1):($2/max_A) title "$100\\times 10\\times 10$" w l ls 1,\
-     "gaussian_3D_Lc5_200x20x20_th.dat" u ($1):($2/max_B) title "$200\\times 20\\times 20$" w l ls 2,\
-     "gaussian_3D_Lc5_400x40x40_th.dat" u ($1):($2/max_C) title "$400\\times 40\\times 40$" w l ls 3
+plot "lognormal_3D_Lc5_100x10x10_th.dat" u ($1):($2/max_A) title "$100\\times 10\\times 10$" w l ls 1,\
+     "lognormal_3D_Lc5_200x20x20_th.dat" u ($1):($2/max_B) title "$200\\times 20\\times 20$" w l ls 2,\
+     "lognormal_3D_Lc5_400x40x40_th.dat" u ($1):($2/max_C) title "$400\\times 40\\times 40$" w l ls 3
 
 
 
 set output
 
 set term unknown;
-plot "gaussian_3D_Lc5_10x10x10_th.dat"   u ($1):($2); max_A = GPVAL_DATA_Y_MAX
-plot "gaussian_3D_Lc5_100x10x10_th.dat"  u ($1):($2); max_B = GPVAL_DATA_Y_MAX
-plot "gaussian_3D_Lc5_1000x10x10_th.dat" u ($1):($2); max_C = GPVAL_DATA_Y_MAX
+plot "lognormal_3D_Lc5_10x10x10_th.dat"   u ($1):($2); max_A = GPVAL_DATA_Y_MAX
+plot "lognormal_3D_Lc5_100x10x10_th.dat"  u ($1):($2); max_B = GPVAL_DATA_Y_MAX
+plot "lognormal_3D_Lc5_1000x10x10_th.dat" u ($1):($2); max_C = GPVAL_DATA_Y_MAX
 
 set term epslatex;
-set output "./figures/elkc_th_3D_gaussian_0_constant_area.eps"
+set output "./figures/elkc_th_3D_lognormal_0_constant_area.eps"
 set ylabel "Euler characteristic" rotate by 90
 set key b r
-plot "gaussian_3D_Lc5_10x10x10_th.dat"   u ($1):($2/max_A) title "$10\\times 10\\times 10$"   w l ls 1,\
-     "gaussian_3D_Lc5_100x10x10_th.dat"  u ($1):($2/max_B) title "$100\\times 10\\times 10$"  w l ls 2,\
-     "gaussian_3D_Lc5_1000x10x10_th.dat" u ($1):($2/max_C) title "$1000\\times 10\\times 10$" w l ls 3
+plot "lognormal_3D_Lc5_10x10x10_th.dat"   u ($1):($2/max_A) title "$10\\times 10\\times 10$"   w l ls 1,\
+     "lognormal_3D_Lc5_100x10x10_th.dat"  u ($1):($2/max_B) title "$100\\times 10\\times 10$"  w l ls 2,\
+     "lognormal_3D_Lc5_1000x10x10_th.dat" u ($1):($2/max_C) title "$1000\\times 10\\times 10$" w l ls 3
 
 
 
