@@ -10,7 +10,7 @@ p=f_read_input(input_file_folder, input_file_name);
 th_elkc=@(j,hs) f_elkc(j, p.geometrical, p.rf_distribution, p.rf_correlation, hs);
 
 %% Plot
-p.hitting_set.thresholds=f_set_thresholds(-3, 3, 0.01, 'log10');
+p.hitting_set.thresholds=f_set_thresholds(-4, 4, 0.01, 'log10');
 figure(1); semilogx(p.hitting_set.thresholds,th_elkc(1,p.hitting_set));
 figure(2); semilogx(p.hitting_set.thresholds,th_elkc(0,p.hitting_set));
 

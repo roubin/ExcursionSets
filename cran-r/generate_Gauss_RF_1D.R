@@ -2,15 +2,15 @@
 library('RandomFields')
 
 # Parameters
-n_rea = 10
+n_rea = 1
 
 size = 100
 step = 0.1
 
-mean = 0.0
-variance = 2
+mean = 0.5
+variance = 2.0
 nugget = 0
-scale = 0.5
+scale = 1.0
 
 method='circulant embeded'
 model = "stable"

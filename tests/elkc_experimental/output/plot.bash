@@ -4,5 +4,5 @@
 while true
 do
     gnuplot plot.gp
-    sleep 7
+    sleep 10
 done

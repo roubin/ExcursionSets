@@ -31,21 +31,22 @@ set xtics nomirror
 set ytics nomirror
 
 #set yrange [0:8000]
-set xrange [-5:5]
+set xrange [0.01:1000]
 
 
 #set ylabel "$\\GMFa_k=\\minfu$" rotate by 90
 
 
+
 set style fill transparent solid 0.2
 
 set term postscrip eps color; set output "./plot.eps";
-set key b r
-#set logscale x
+set key t r
+set logscale x
 plot "../output_f_exp_lkc0.dat" u ($1):($2):($4) notitle "Experimental Enveloppe"  w filledcu ls 11 ,\
      "../output_f_exp_lkc0.dat" u ($1):($2) notitle w l ls 11 ,\
      "../output_f_exp_lkc0.dat" u ($1):($4) notitle w l ls 11 ,\
-     "gaussian_3D_Lc2_th.dat" u ($1):($2) title "Theoretical" w l ls 2 ,\
+     "lognormal_1D_Lc1_th.dat" u ($1):($2) title "Theoretical" w l ls 2 ,\
      "../output_f_exp_lkc0.dat" u ($1):($3) title "Experimental" w p ls 11
 
 
