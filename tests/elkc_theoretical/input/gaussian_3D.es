@@ -8,12 +8,13 @@ rf_correlation -> type -> gaussian
 rf_correlation -> correlation_length -> 5
 
 geometrical -> spatial_dimension -> 3
+geometrical -> specimen -> cube
 geometrical -> specimen -> para
-geometrical -> size -> 100.0
-geometrical -> sizeX -> 10000.0
+geometrical -> size -> 10.0
+geometrical -> sizeX -> 10.0
 geometrical -> sizeY -> 10.0
 geometrical -> sizeZ -> 10.0
 
-hitting_set -> type -> tail
-%hitting_set -> type -> cumulative
+%hitting_set -> type -> tail
+hitting_set -> type -> cumulative
 

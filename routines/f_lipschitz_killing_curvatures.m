@@ -22,7 +22,7 @@ switch geometrical.specimen
             case 3
                 switch number
                     case 0
-                        lkc=0;
+                        lkc=1;
                     case 1
                         lkc=geometrical.sizeX+geometrical.sizeY+geometrical.sizeZ;
                     case 2

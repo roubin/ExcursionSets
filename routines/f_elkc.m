@@ -14,7 +14,6 @@ lkc  = @(ij) f_lipschitz_killing_curvatures(ij, geometrical); % hande LKC of the
 
 elkc=zeros(size(hitting_set.thresholds));
 for i_gmf=0:(geometrical.spatial_dimension-j_lkc)
-  %display(['     --> gmf ' num2str(i_gmf)])
   elkc=elkc+f_flag_coef(i_gmf+j_lkc,i_gmf)*(lam2/(2.0*pi))^(double(i_gmf)/2.0)*lkc(i_gmf+j_lkc)*gmf(i_gmf);
 end
 
