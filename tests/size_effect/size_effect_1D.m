@@ -2,7 +2,7 @@
 clear all; addpath('../../routines');
 
 %% th ELKC
-input_file_folder='input'; input_file_name='lognormal_1D.es';
+input_file_folder='input'; input_file_name='lognormal_1D_phd.es';
 p=f_read_input(input_file_folder, input_file_name);
 
 p.rf_distribution.rmean;
@@ -14,7 +14,7 @@ lengths=10.^(-3:0.1:9);
 failure_stress=zeros(size(lengths));
 
 %y_to_finds=[0.01 0.05 0.10 0.50 0.90 0.95 0.99];
-y_to_finds=[0.1 0.5];
+y_to_finds=[0.01];
 for q=1:size(y_to_finds,2)
     y_to_find=y_to_finds(1,q);
     display(['quantile=' num2str(y_to_find)])
