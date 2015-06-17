@@ -10,7 +10,7 @@ step <- 1
 mean <- 0.0
 variance <- 2
 nugget <- 0
-scale <- 10
+scale <- 2
 
 
 method='circulant embeded'
@@ -27,7 +27,7 @@ param <- c(mean, variance, nugget, scale, alpha)
 #nu <- 2.0
 #param <- c(mean, variance, nugget, scale, nu)
 
-size <- c(500,50,50)
+size <- c(100,100,100)
 x <- seq(0, size[1], step) 
 y <- seq(0, size[2], step) 
 z <- seq(0, size[3], step) 
@@ -52,7 +52,7 @@ source("/home/eroubin/Work/ExcursionSets/cran-r/routines/CreateVTKFile.R")
 dim <- 3
 CreateVTKFile(RF,size,dim)
 
-print('PLOT TXT')
+#print('PLOT TXT')
 #source("/Users/roubin/Work/ExcursionSets/cran-r/routines/CreateTXTFile.R")
 #source("/home/eroubin/Work/ExcursionSets/cran-r/routines/CreateTXTFile.R")
 #CreateTXTFile(RF, n_rea, size, dim)
