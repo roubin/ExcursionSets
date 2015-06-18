@@ -145,7 +145,7 @@ switch rf_dimension
                 
                 lkc.LKC3(i_threshold,i_rea)=sX*sY*sZ*n_points_in./n_points;
                 
-                if(~skipl0)                    
+                if(~skipl0)
                     S=0; % number of vertices
                     A=0; % number of edges
                     F=0; % number of faces
@@ -186,7 +186,7 @@ switch rf_dimension
                                 end
                             end
                         end
-                    end                                                            
+                    end
                     lkc.LKC0(i_threshold,i_rea)=S-A+F-V;
                 end
             end

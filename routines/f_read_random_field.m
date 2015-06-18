@@ -16,7 +16,7 @@ n_points=size(rf_field{1},1);
 
 if(rf_dimension==3)
     random_fields=struct('Dimension', rf_dimension, 'Type', 'cube', 'Size', rf_size, 'NRealisations', n_rea, 'NPoints', n_points, 'Values', zeros(n_points, n_rea), 'SizeX', str2double(rf_header{1}), 'NpointsX', str2double(rf_header{4}), 'SizeY', str2double(rf_header{2}), 'NpointsY', str2double(rf_header{5}), 'SizeZ', str2double(rf_header{3}), 'NpointsZ', str2double(rf_header{6}));
-else    
+else
     random_fields=struct('Dimension', rf_dimension, 'Type', 'cube', 'Size', rf_size, 'NRealisations', n_rea, 'NPoints', n_points, 'Values', zeros(n_points, n_rea));
 end
 display(['         Spatial Dimension      : ' num2str(rf_dimension)])
@@ -28,18 +28,18 @@ display(' ')
 display('     --> Formating data...')
 
 switch rf_dimension
- case {1, 2, 3}
-  for i=1:n_points
-    tmp=regexp(strrep(rf_field{1}{i},' ',''),',','split');
-    for j=1:n_rea
-      random_fields.Values(i,j)=str2double(tmp{j});
-    end
-  end
-  if(rf_dimension==1)
-    random_fields.Points=linspace(0,random_fields.Size,random_fields.NPoints);
-  end
- otherwise
-  error('This dimension is not implemented yet')
+    case {1, 2, 3}
+        for i=1:n_points
+            tmp=regexp(strrep(rf_field{1}{i},' ',''),',','split');
+            for j=1:n_rea
+                random_fields.Values(i,j)=str2double(tmp{j});
+            end
+        end
+        if(rf_dimension==1)
+            random_fields.Points=linspace(0,random_fields.Size,random_fields.NPoints);
+        end
+    otherwise
+        error('This dimension is not implemented yet')
 end
 
 

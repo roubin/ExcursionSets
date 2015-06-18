@@ -19,12 +19,12 @@ for l=1:size(lengths,1)
     
     %%% DETECT EXTREMA WITH PRECISION OF THE ARRAY (COARSE) %%%
     tr=p.hitting_set.thresholds;
-    ec=th_ec(tr);    
-    [max_ec, min_ec]=peakdet(ec, 1e-14, tr);    
+    ec=th_ec(tr);
+    [max_ec, min_ec]=peakdet(ec, 1e-14, tr);
     %figure(1); plot(tr,th_ec(tr));
     if(size(min_ec)>1)
         if(max_ec(end,2)*min_ec(end,2)<0)
-        	[x01, y01]=fzero(th_ec,[min_ec(end,1), max_ec(end,1)]);
+            [x01, y01]=fzero(th_ec,[min_ec(end,1), max_ec(end,1)]);
             %figure(2); plot(tr,th_ec(tr),[max_ec(:,1); min_ec(:,1)],[max_ec(:,2); min_ec(:,2)], '+r', x01, y01, '*r', [min(tr) max(tr)], [0 0], '--k');
             list_to_save(l,1)=x01;
             list_to_save(l,2)=th_vo(x01);
@@ -41,4 +41,3 @@ figure(4); semilogx(TAB(:,1), TAB(:,3), 'r-*');
 output_file_folder='.'; output_file_name=['output/percolation_' num2str(p.geometrical.spatial_dimension) 'D_lastRoot.dat'];
 txt1='Scale ratio l/lc; threshold+; fraction volume+';
 f_write_gnuplot_output(output_file_folder, output_file_name, TAB(:,1), TAB(:,2:3), txt1);
-

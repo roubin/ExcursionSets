@@ -19,11 +19,11 @@ for l=1:size(lengths,1)
     
     %%% DETECT EXTREMA WITH PRECISION OF THE ARRAY (COARSE) %%%
     tr=p.hitting_set.thresholds;
-    ec=th_ec(tr);    
-    [max_ec, min_ec]=peakdet(ec, 1e-14, tr);    
+    ec=th_ec(tr);
+    [max_ec, min_ec]=peakdet(ec, 1e-14, tr);
     nmin=size(min_ec,1); nmax=size(max_ec,1);
     %display(['Nmax: ' num2str(nmax) ' Nmin: ' num2str(nmin)])
-    if(nmax==1 && nmin==0)        
+    if(nmax==1 && nmin==0)
     elseif(nmax==2 && nmin==1)
     elseif(nmax==3 && nmin==2)
         %figure(1); plot(tr,th_ec(tr),[max_ec(:,1); min_ec(:,1)],[max_ec(:,2); min_ec(:,2)], '+r', [min(tr) max(tr)], [0 0], '--k');
@@ -51,7 +51,7 @@ for l=1:size(lengths,1)
             list_to_save34(l,4)=th_vo(x04);
         else
             %display(' --> Roots 3&4: no')
-        end        
+        end
     else
         warning(['a=' num2str(1/p.geometrical.size) ' --> Unknown behavior'])
     end

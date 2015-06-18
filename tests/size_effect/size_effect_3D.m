@@ -22,17 +22,17 @@ i=0;
 for l=1:size(lengths,1)
     i=i+1;
     p.geometrical.sizeX=lengths(l,1);
-    %p.geometrical.sizeY=0.00001*lengths(l,1);    
+    %p.geometrical.sizeY=0.00001*lengths(l,1);
     %p.geometrical.sizeZ=0.00001*lengths(l,1);
     p.geometrical.sizeY=10;
     p.geometrical.sizeZ=10;
-
+    
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% DETECT EXTREMA WITH PRECISION OF THE ARRAY (COARSE) %%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     tabtresh=p.hitting_set.thresholds;
     tabeuler=f_elkc(0, p.geometrical, p.rf_distribution, p.rf_correlation, p.hitting_set);
-    maxeuler=max(abs(tabeuler));    
+    maxeuler=max(abs(tabeuler));
     display([num2str(i/imax*100.0) '% (' num2str(p.geometrical.sizeX) ', ' num2str(p.geometrical.sizeY) ', ' num2str(p.geometrical.sizeZ) ')'])
     [maxtab, mintab]=peakdet(tabeuler, 1e-14, tabtresh);
     nmin=size(mintab,1); nmax=size(maxtab,1);
@@ -41,16 +41,16 @@ for l=1:size(lengths,1)
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% DETECT EC->1 (QUANTILE) %%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if(nmax==0)
         maxsearch=tabtresh(end);
     else
         maxsearch=maxtab(1,1);
-    end    
+    end
     quantile=0.5;
     th_elkc_q =@(t) f_elkc(0, p.geometrical, p.rf_distribution, p.rf_correlation, struct('type',p.hitting_set.type,'thresholds',t))-quantile;
     [x_quantile, y_quantile]=fzero(th_elkc_q,[min(tabtresh) maxsearch]);
-    list_x0q(l)=x_quantile;    
+    list_x0q(l)=x_quantile;
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% FIND ZEROS WITH BOUNDARIES BASED ON PREVIOUS EXTRAMA DETECTION %%%
@@ -87,14 +87,14 @@ for l=1:size(lengths,1)
     
     %%% NO ZEROS FOUND %%%
     if(~findzero)
-        figure(1);        
-        semilogx(tabtresh, tabeuler./maxeuler, [tabtresh(1) tabtresh(end)], [0 0], '--k', [x_quantile x_quantile], [0 quantile./maxeuler], '*--k');        
+        figure(1);
+        semilogx(tabtresh, tabeuler./maxeuler, [tabtresh(1) tabtresh(end)], [0 0], '--k', [x_quantile x_quantile], [0 quantile./maxeuler], '*--k');
     end
     %title(['Size X, Y, Z ' num2str(p.geometrical.sizeX) ', ' num2str(p.geometrical.sizeY) ', ' num2str(p.geometrical.sizeZ)]);
     %xlabel('Threshold')
     %ylabel('Euler')
-    %nametmp=sprintf('euler_length_%05d',l);    
-    %print(nametmp,'-djpeg')    
+    %nametmp=sprintf('euler_length_%05d',l);
+    %print(nametmp,'-djpeg')
 end
 %%
 figure(2); loglog(lengths, list_x01, 'r-*', lengths, list_x02, 'g-*',  lengths, list_x0q, 'k-*')
@@ -103,7 +103,7 @@ xlabel('length')
 ylabel('Threshold')
 legend('First 0', 'Second 0', 'First EC=0.5','Location','southwest')
 print('size_effect','-djpeg')
- 
+
 %% Gnuplot Output
 %    output_file_folder='.'; output_file_name=['size_effect_2D_m' num2str(p.rf_distribution.rmean) '_v' num2str(p.rf_distribution.rvariance) '_q' num2str(y_to_find) '.dat'];
 %    f_write_gnuplot_output(output_file_folder, output_file_name, lengths', failure_stress');
