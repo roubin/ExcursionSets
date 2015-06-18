@@ -1,5 +1,5 @@
 %% Initial
-clear all; addpath('../../routines');
+%clear all; addpath('../../routines');
 input_file_folder='input';
 output_file_folder='output';
 
@@ -28,7 +28,7 @@ f_write_gnuplot_output(output_file_folder, output_file_name, p.hitting_set.thres
 
 
 %% Initial
-clear all; addpath('../../routines');
+%clear all; addpath('../../routines');
 input_file_folder='input';
 output_file_folder='output';
 
@@ -38,7 +38,6 @@ p=f_read_input(input_file_folder, input_file_name);
 p.hitting_set.thresholds=f_set_thresholds(-5,5,0.01);
 
 gmf=@(k) f_gaussian_minkowski_functionals(k,p.rf_distribution,p.hitting_set);
-
 gmf=[gmf(0) gmf(1) gmf(2) gmf(3) gmf(4)];
 
 %% Plot

@@ -20,7 +20,7 @@ switch n_func
  case 1
   fprintf(fid,'%f %f\n', [x y].');
  case 2
-  fprintf(fid,'%f %f %f\n', [x y].');
+  fprintf(fid,'%f %f %0.50f\n', [x y].');
  case 3
   fprintf(fid,'%f %f %f %f\n', [x y].');
  case 4

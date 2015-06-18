@@ -13,15 +13,13 @@ switch geometrical.specimen
                 else
                     error(error_lkc_not_exist)
                 end
-            case {4}
+            otherwise
                 if(number<=geometrical.spatial_dimension && number>=0)
                     %warning('LKC of a hypercube not proven');
                     lkc=double(nchoosek(double(geometrical.spatial_dimension), double(number))*geometrical.size.^double(number));
                 else
                     error(error_lkc_not_exist)
                 end
-            otherwise
-                error(error_dimension_not_implemented)
         end
         
     case 'para'
