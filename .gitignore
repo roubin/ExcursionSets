@@ -16,3 +16,6 @@ Thumbs.db
 ###########
 *.dat
 *.txt
+*.vtk
+tests/*/output/*
+cran-r/output/*

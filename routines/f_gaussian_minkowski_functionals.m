@@ -50,14 +50,6 @@ switch rf_distribution.type
     switch number            
      case 0
       gmf=0.5*(1+erf((kappa-mean)/(sqrt(2)*std)));
-%      case 1
-%       gmf=exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std);
-%      case 2
-%       gmf=-(kappa-mean)/std.*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^2);
-%      case 3
-%       gmf=((kappa-mean).^2/std^2-1).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^3);
-%      case 4
-%       gmf=-((kappa-mean).^3/std^3-3*(kappa-mean)/std).*exp(-(kappa-mean).^2/(2*std^2))/(sqrt(2*pi)*std^4);
      otherwise
        j=number; ks=(kappa-mean)/std;
        gmf=(-1)^(j+1)*exp(-ks.^2/2).*f_probabilistic_hermite_polynomials(j-1,ks)./(std^j*sqrt(2*pi));
