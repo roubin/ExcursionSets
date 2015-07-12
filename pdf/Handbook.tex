@@ -2,10 +2,12 @@
 
 \input{inc/style_handbook}
 \input{inc/shortcuts_es}
-
+\title{\textsc{Handbook on excursion sets}}
+\date{\textsc{\today}}
+\author{\textsc{Emmanuel ROUBIN\footnote{\url{email: emmanuel@crans.org}}}}
 \begin{document}
-\maintitle{Handbook on excursion sets}
-
+\maketitle
+\thispagestyle{empty}
 \tableofcontents
 \newpage
 \section{Priliminary calculations}
@@ -14,18 +16,36 @@
   \frac{\text{d}}{\text{d}x}\left(\ \int_{a(x)}^{b(x)} f(x,t) dt \ \right) = f(x,b(x))b'(x)-f(x,a(x))a'(x)+\int_{a(x)}^{b(x)}\frac{\partial}{\partial x}f(x,t)dt
 \end{equation}
 \subsection{Functions}
-\subsubsection{Gamma function: $\GamFunc$}
-\begin{equation}\GamFunc: z \rightarrow \int_0^\infty t^{z-1}e^{-t} dt\end{equation}
-\subsubsection{Error function: $\erf$}
-\begin{equation}\erf(x)=\frac{2}{\sqrt\pi}\int_0^xe^{-t^2}dt\end{equation}
+\begin{itemize}
+\item Gamma function: $\GamFunc(z)$
+  \begin{equation}
+    \GamFunc: z \mapsto \int_0^\infty t^{z-1}e^{-t} dt
+  \end{equation}
+\item Incomplete Gamma function: $\GamFunc(z,x)$
+  \begin{equation}
+    \GamFunc: z \times x \mapsto \int_x^\infty t^{z-1}e^{-t} dt
+  \end{equation}
+\item Normalized incomplete Gamma function: $\bar{\GamFunc}(z,x)$
+  \begin{equation}
+    \bar{\GamFunc}: z \times x \mapsto \GamFunc(z,x)/\GamFunc(z)
+  \end{equation}
+\item Error function: $\erf(x)$
+  \begin{equation}
+    \erf: x \mapsto \frac{2}{\sqrt\pi}\int_0^xe^{-t^2}dt
+  \end{equation}
+\end{itemize}
 \subsection{Lipschitz-Killing curvatures (LKC)}
-\subsubsection{For a regular shapes in 1,2 and 3 dimensions}
-\begin{equation}
-  \text{For a cube} \ \ \MRF_N=\prod_{i=1}^{N}[0\ \Msize], \ \ \LKC_j(\MRF_N)= \left( \begin{array}{c} N \\ j \end{array} \right) \Msize^j
-\end{equation}
-\begin{equation}
-  \text{For a parallelepiped} \ \ \PRF_N=\prod_{i=1}^{N}[0\ \Msize_i], \ \ \LKC_j(\MRF_N)= \dots
-\end{equation}
+\begin{itemize}
+  \item For a cube:
+  \begin{equation}
+    \MRF_N=\prod_{i=1}^{N}[0\ \Msize], \ \ \LKC_j(\MRF_N)= \left( \begin{array}{c} N \\ j \end{array} \right) \Msize^j
+  \end{equation}
+\item For a parallelepiped
+  \begin{equation}
+    \PRF_N=\prod_{i=1}^{N}[0\ \Msize_i], \ \ \LKC_j(\MRF_N)= \dots
+  \end{equation}
+\end{itemize}
+
 \begin{center}
   \begin{tabular}{c|c|c|l}
     $N$ & LKC & Value & Meaning \\
@@ -135,7 +155,7 @@
 \end{equation}
 
 \subsection{GMFs for Gaussian distribution}
-\subsubsection{Application to one-dimensional tail hitting set: $k=1$ and $\HS=\uinf$}
+\subsubsection{Application to: $k=1$ and $\HS=\uinf$}
 Tail probability $\TP$:
 \begin{equation}
   \GaussMeas^1(\uinf) = \Proba\{\GRV\ge\lset\}=\frac{1}{\std\sqrt{2\pi}} \int_\lset^\infty e^{-(x-\mean)^2/2\std^2} dx=\TP(\lset)
@@ -183,17 +203,13 @@ Identification:
   \end{array}
   \right.
 \end{equation}
-%\begin{figure}[!h]
-%  \scalebox{0.9}{\input{./figures/gmf_tail}}
-%  \caption{First 4 GMF for $\std^2=2$ and $\HS=\HST=\uinf$}
-%\end{figure}
 \item Derivatives:
 \begin{equation}
   \forall j, \ \ \frac{\text{d}\GMFa_j}{\text{d}\lset}(\HST)=(-1)^j\frac{\text{d}^{j+1}\TP(\lset)}{\text{d}\lset^{j+1}}=-\GMFa_{j+1}(\HST)
 \end{equation}
 \end{itemize}
 
-\subsubsection{Application to one-dimensional cumulative hitting set: $k=1$ and $\HS=\minfu$}
+\subsubsection{Application to: $k=1$ and $\HS=\minfu$}
 Cumulative probability $\CDP$:
 \begin{equation}
   \GaussMeas^1(\minfu) = \Proba\{\GRV\le\lset\}=\frac{1}{\std\sqrt{2\pi}} \int_{-\infty}^\lset e^{-(x-\mean)^2/2\std^2} dx=\CDP(\lset)
@@ -249,6 +265,72 @@ Identification:
 \end{equation}
 \end{itemize}
 
+\subsubsection{Application to: $k\in\NZ$ and $\HS = \Rk \backslash \mathcal{B}_{\Rk}\left(0,\lset\right)$}
+Simplification $\mean=0$ gives Gaussian measure:
+\begin{equation}
+    \gamma_k(\HS) = \frac{1}{\std^k(2\pi)^{k/2}} \int_{\HS} \ e^{-\|\x\|^2/2\std^2} d\x
+\end{equation}
+Spherical coordinates in $\Rk$:
+\begin{equation}
+  \left\{
+  \begin{array}{lcl}
+    \|\x\|    & = & r \\
+    x_1     & = & r \cos(\theta_1) \\
+    x_2     & = & r \sin(\theta_1) \cos(\theta_2) \\
+    x_2     & = & r \sin(\theta_1) \sin(\theta_2) \cos(\theta_3) \\
+    \vdots    & & \\
+    x_{k-1} & = & r \sin(\theta_1) \sin(\theta_2) \cdots \sin(\theta_{k-2}) \cos(\theta_{k-1}) \\
+    x_k     & = & r \sin(\theta_1) \sin(\theta_2) \cdots \sin(\theta_{k-2}) \sin(\theta_{k-1})
+  \end{array}
+  \right.
+\end{equation}
+Volume element in $\Rk$:
+\begin{subequations}
+  \begin{align*}
+    dV & = \left| \text{det}\frac{\partial x_i}{\partial (r,\theta_j)} \right| dr d\theta_1\cdots d\theta_{k-1} \\
+       & = r^{k-1}\sin^{k-2}(\theta_1) \sin^{k-3}(\theta_2) \cdots \sin(\theta_{k-2}) dr d\theta_1\cdots d\theta_{k-1}
+  \end{align*}
+\end{subequations}
+Gaussian volume using $(r,\{\theta_i\})$:
+\begin{equation}
+  \begin{aligned}
+    \gamma_k(\Rk \backslash \mathcal{B}_{\Rk}(0,\lset)) & = \frac{1}{\std^k(2\pi)^{k/2}} \int_{r=\lset}^\infty \ r^{k-1} e^{-r^2/2\std^2} dr \\
+                                       & \times \underbrace{\int_0^\pi \sin^{k-2}(\theta_1)d\theta_1\int_0^{2\pi}\sin^{k-3}(\theta_2)d\theta_2 \cdots \int_0^{2\pi}d\theta_{k-1}}_{2\pi^{k/2}/\Gamma(k/2) \ \ (k-1\text{-dimensional volume of unit sphere})} \\ \\
+                                       & = \frac{1}{\std^k2^{k/2-1}\Gamma(k/2)} \int_{r=\lset}^\infty \ r^{k-1} e^{-r^2/2\std^2} dr
+  \end{aligned}
+\end{equation}
+Tube expansion for $\HS=\Rk \backslash \mathcal{B}_{\Rk}(0,\lset)$:
+\begin{equation}
+  \GaussMeas^k(\tube(\Rk \backslash \mathcal{B}_{\Rk}\left(0,\lset\right),\ray))=\GaussMeas^k(\Rk \backslash \mathcal{B}_{\Rk}\left(0,\lset-\ray\right))=\sum_{j=0}^{\infty} \frac{(-\ray)^j}{j!} \frac{\text{d}^j \gamma_k(\Rk \backslash \mathcal{B}_{\Rk}(0,\lset))}{\text{d} \lset^j}
+\end{equation}
+Simplification of $\gamma_k(\Rk \backslash \mathcal{B}_{\Rk}(0,\lset))$ with variable substitution:
+\begin{equation}
+  \left\{
+  \begin{array}{lll}
+    t = r^2/2\std^2 &\rightarrow& r = \sqrt{2t}\std \\
+    dt = rdr/\std^2 &\rightarrow& dr= \sqrt{1/2t}\std dt
+  \end{array}
+  \right.
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \gamma_k(\Rk \backslash \mathcal{B}_{\Rk}(0,\lset)) & = \frac{1}{\std^k\Gamma(k/2)2^{k/2-1}} \int_{t=\lset^2/2\std^2}^\infty \ (\sqrt{2t}\std)^{k-1} e^{-t} \frac{\std}{\sqrt{2t}} dt\\
+                  & = \frac{1}{\Gamma(k/2)} \int_{t=\lset^2/2\std^2}^\infty \ t^{k/2-1} e^{-t} dt\\
+                  & = \overline{\Gamma}(k/2,\lset^2/2\std^2)
+  \end{aligned}
+\end{equation}
+
+\subsubsection{Application to: $k\in\NZ$ for various $\HS$}
+\begin{equation}
+  \begin{array}{lll}
+    \gamma_k(\mathcal{B}_{\Rk}(0,\lset))              &=& \overline{\gamma}(k/2,\lset^2/2\std^2) \\
+    \gamma_k(\Rk\backslash\mathcal{B}_{\Rk}(0,\lset)) &=& \overline{\Gamma}(k/2,\lset^2/2\std^2) \\
+    \gamma_k(\mathcal{B}_{\Rk}(0,\lset_1)\cup(\Rk\backslash\mathcal{B}_{\Rk}(0,\lset_2)))) &=& \overline{\gamma}(k/2,\lset_1^2/2\std^2) + \overline{\Gamma}(k/2,\lset_2^2/2\std^2) \\
+    \gamma_k(\Rk\backslash(\mathcal{B}_{\Rk}(0,\lset_1)\cup(\Rk\backslash\mathcal{B}_{\Rk}(0,\lset_2))))) &=& 1-\overline{\gamma}(k/2,\lset_1^2/2\std^2) - \overline{\Gamma}(k/2,\lset_2^2/2\std^2)
+  \end{array}
+\end{equation}
+
+
 \subsection{GMFs for Gaussian related Random Fields}
 \begin{equation}
   \GRRF : \Univ\times\RN \overset{\vGRF}{\rightarrow} \Rk \overset{\rfunc}{\rightarrow} \RR
@@ -259,7 +341,7 @@ Identification:
 
 \subsubsection{Log-normal distribution}
 \begin{equation}
-  k=1 \ \ \text{,} \ \ \rfunc=\exp \ \ \text{and} \ \ \irfunc=\ln
+  k=1, \ \ \rfunc:\RR\mapsto\RR=\exp \ \ \text{and} \ \ \irfunc=\ln
 \end{equation}
 \begin{equation}
   \left|
@@ -330,13 +412,52 @@ Derivatives:
   \end{array}
   \right.
 \end{equation}
+\end{itemize}
 
+\subsubsection{$\chi^2_k$ distribution}
+\begin{equation}
+  k\in\NZ, \ \ \rfunc:\Rk\mapsto\RR=\|\bullet\|_2
+\end{equation}
+Identification with tail hitting set:
+\begin{equation}
+  \HSTchik=\irfunc(\uinf)=\mathcal{B}_{\Rk}\left(0,\sqrt{\lset}\right)
+\end{equation}
+
+\begin{itemize}
+\item For $j=0$:
+\begin{equation}
+  \GMFk_0(\HSTchik)=\overline{\Gamma}(k/2,\lset/2\std^2)
+\end{equation}
+\item For $j=1$:
+\begin{equation}
+  \GMFk_1(\HSTchik)=-\frac{\text{d}\overline{\Gamma}(k/2,\lset/2\std^2)}{\text{d}\lset}=\left(\frac{\lset}{2\std^2}\right)^{k/2-1}e^{-\lset/2\std^2}
+\end{equation}
+\item For $j>1$:
+  \begin{equation}
+    \begin{aligned}
+      \GMFk_j(\HSTchik)&=(-1)^j\frac{\text{d}^j\overline{\Gamma}(k/2,\lset/2\std^2)}{\text{d}\lset^j}\\
+                       &=\frac{1}{(2\std^2)^{2j-2}}\prod_{l=1}^{j-1}\left(\frac{k}{2}-l\right)\left(\frac{\lset}{2\std^2}\right)^{k/2-j}e^{-\lset/2\std^2}
+    \end{aligned}
+  \end{equation}
+
+\item First values:
+  \begin{equation}
+    \left\{
+    \begin{aligned}
+      &\GMFk_0(\HSTchik) = \int_{\frac{\lset}{2\std^2}}^\infty t^{k/2-1}e^{-t} dt\\ 
+      &\GMFk_1(\HSTchik) = \left(\frac{\lset}{2\std^2}\right)^{k/2-1}e^{-\lset/2\std^2}\\
+      &\GMFk_2(\HSTchik) = \frac{1}{(2\std^2)^2}\left[\frac{k}{2}-1\right] \left(\frac{\lset}{2\std^2}\right)^{k/2-2}e^{-\lset/2\std^2}\\
+      &\GMFk_3(\HSTchik) = \frac{1}{(2\std^2)^4}\left[\left(\frac{k}{2}-1\right)\left(\frac{k}{2}-2\right)\right] \left(\frac{\lset}{2\std^2}\right)^{k/2-3}e^{-\lset/2\std^2}\\
+      &\GMFk_4(\HSTchik) = \frac{1}{(2\std^2)^6}\left[\left(\frac{k}{2}-1\right)\left(\frac{k}{2}-2\right)\left(\frac{k}{2}-3\right)\right] \left(\frac{\lset}{2\std^2}\right)^{k/2-4}e^{-\lset/2\std^2}\\
+      &\dots \\
+    \end{aligned}
+    \right.
+  \end{equation}
 \end{itemize}
 
 \newpage
 \section{Expectation Formula}
-\subsection{Gaussian distribution}
-\subsubsection{General case}
+\subsection{General case}
 \begin{equation}
   \Expec\left\{\ \LKC_j(\ES) \ \right\} = \sum_{i=0}^{N-j} \left[ \begin{array}{c}i+j\\i\end{array}\right]\left(\frac{\SpecMom}{2\pi}\right)^{i/2}\LKC_{i+j}(\MRF)\GMFk_i(\irfunc(\HS))
 \end{equation}
@@ -348,7 +469,7 @@ Notations:
       & \text{GMF of $\irfunc(\HS)$:} \ \  \GMFk_j(\irfunc(\HS)) = \GMFk_j
     \end{flalign}
   \end{subequations}
-\subsubsection{One dimension}
+\subsection{One dimension}
 \begin{subequations}
 \begin{align}
   &\Expec\left\{\LKC_0^\ES\right\} = \left(\frac{\SpecMom}{2\pi}\right)^{1/2}\LKC_1^\MRF\GMFk_1 + \LKC_0^\MRF\GMFk_0\\
@@ -374,7 +495,7 @@ Notations:
 \end{figure}
 
 \newpage 
-\subsubsection{Two dimensions}
+\subsection{Two dimensions}
 \begin{subequations}
 \begin{align}
   &\Expec\left\{\LKC_0^\ES\right\} = \frac{\SpecMom}{2\pi}\LKC_2^\MRF\GMFk_2 + \sqrt{\frac{\SpecMom}{2\pi}}\LKC_1^\MRF\GMFk_1 + \LKC_0^\MRF\GMFk_0\\
@@ -406,12 +527,13 @@ Notations:
 \subsubsection{Three dimensions}
 \begin{subequations}
 \begin{align}
-  &\Expec\left\{\LKC_0^\ES\right\} = \\%\frac{\SpecMom}{2\pi}\LKC_2^\MRF\GMFk_2 + \sqrt{\frac{\SpecMom}{2\pi}}\LKC_1^\MRF\GMFk_1 + \LKC_0^\MRF\GMFk_0\\
-  &\Expec\left\{\LKC_1^\ES\right\} = \\%\sqrt{\frac{\SpecMom\pi}{8}}\LKC_2^\MRF\GMFk_1 + \LKC_1^\MRF\GMFk_0\\
-  &\Expec\left\{\LKC_2^\ES\right\} = \\%\LKC_2^\MRF\GMFk_0
-  &\Expec\left\{\LKC_3^\ES\right\} = \LKC_3^\MRF\GMFk_0
+  \Expec\left\{\LKC_0^\ES\right\} &= \left(\frac{\SpecMom}{2\pi}\right)^\frac{3}{2}\LKC_3^\MRF\GMFk_3 +\frac{\SpecMom}{2\pi}\LKC_2^\MRF\GMFk_2 + \left(\frac{\SpecMom}{2\pi}\right)^\frac{1}{2}\LKC_1^\MRF\GMFk_1 + \LKC_0^\MRF\GMFk_0\\
+  \Expec\left\{\LKC_1^\ES\right\} &= \frac{\SpecMom}{\pi}\LKC_3^\MRF\GMFk_2 + \frac{\sqrt{\SpecMom\pi}}{2\sqrt{2}}\LKC_2^\MRF\GMFk_1 + \LKC_1^\MRF\GMFk_0\\
+  \Expec\left\{\LKC_2^\ES\right\} &= \sqrt{\frac{2\SpecMom}{\pi}}\LKC_3^\MRF\GMFk_1 + \LKC_2^\MRF\GMFk_0\\
+  \Expec\left\{\LKC_3^\ES\right\} &= \LKC_3^\MRF\GMFk_0
 \end{align}
 \end{subequations}
+
 
 \begin{figure}[!h]
   \centering
@@ -421,102 +543,5 @@ Notations:
   \subfigure{\scalebox{0.5}{\input{./figures/elkc_exp_3D_gaussian_3}}}\\
   \caption{Expectation of LKC for $\PRF=100\times 20 \times 20$, $\mean=0.0$, $\std^2=2$, $\Lc=2$, and $\HS=\uinf$ (gaussian distribution with tail hitting set) in 3D. Experimental results are calculated over $100$ realizations.}
 \end{figure}
-
-\newpage
-\section{Size effect}
-In this section another approach using expected values of excursion set characteristics is proposed. Up to this point, this mathematical tool has been used in order to yield actual morphologies and predict their geometrical and topological characteristics. The continuum aspect of correlated RFs was concealed by the thresholding method used (level set) which led to discrete fields (excursion sets). Herein, RFs directly represent a material property (ultimate stress field) and the excursion set theory is used in order to catch statistical information on its extrema.
-\par A theoretical method for size effect modeling of brittle heterogeneous materials is proposed. In this field, the main result comes from the early studies of \cite{weibull_statistical_1951} based on the theory of the weakest link. The authors proposed an analytical solution for the global failure criterion, considering a discrete structure of independent brittle links with a specific distribution probability of local failure criterion. With no spatial correlation between each link, this theory leads inevitably to large scale size effect. The two current theories of Zden\v{e}k P. Ba\v{z}ant and Alberto Carpinteri, trying to describe the size effect for the missing scales, are the main results of the extensive literature existing on this topic. The former tends, in many ways, to describe the size effect using both non-local model and stochastic approach \cite{sab_unified_1993}, or more recently using the so-called energetic-statistical size effect mixing strength redistribution theory in a fracture process zone and Weibull's theory \cite{bazant_probability_2004}. The latter considers material heterogeneities with a fractal model in order to represent size effects for quasi-brittle materials \cite{carpinteri_mechanics_2003}. On the other hand, numerical simulations have been made using stochastic integrations and correlated RFs in order to describe material properties \cite{colliat_stochastic_2007}. These methods are quickly time consuming and the underlying numerical implementation brings an inevitable limitation regarding the observation scale.
-\par The idea behind this method is to extend the Weibull theory to lower scales by adding the spatial structure of \emph{correlated} RFs. A continuum representation of the spatial variability through scales can theoretically be made by defining a ratio $\rl=\Lc/\Msize$ between the spatial parameter of the correlated RF covariance function $\Lc$ and the size of its definition domaine $\Msize$. As already stated just above, heterogeneities modeling is directly made through a variation of material properties (and not by through definition of different phases). The continuum aspect of correlated RFs statistically represents a local ultimate failure stress $\slim(\x,\w)$ on a structure $\MRF$. RFs are here used in a direct way, even if the discrete aspect of excursion set and their expected Euler characteristic are used in order to define the global failure stress $\sfail$ of the structure. The whole framework has to be seen on a purely theoretical and analytical point of view. Contrary to stochastic integration methods, the knowledge of expected information on RFs avoids generating actual RF realizations. Hence, there is no scale limitation.
-
-\subsection{Correlation lengths as scale parameters}
-As it has been pointed out during this chapter, the correlation length $\Lc$ can been seen as a size parameter of a correlated RF. Herein, a constant value of $\Lc$ is chosen, fixing the average size of the heterogeneities considered. The dimension of the domain $\MRF$ (where the RF is defined) represents the size of the whole structure. If $\Msize$ is the characteristic length of $\MRF$ (for example: the length of a segment in the one-dimensional space, the length of the side of a square in a two-dimensional space\dots), its value determines the observation scale. In order to let the heterogeneity size unspecified, the ratio $\rl=\Lc/\Msize$ is taken into consideration. Nonetheless, $\Lc$ still as to be seen as a constant and $\Msize$ a variable. Realizations of RFs for different ratios $\rl$ are shown in Fig. \ref{fig:size-efect:rf2d} on a two-dimensional square.
-\begin{description}
-  \item \emph{For $\rl \gg 1$} \\ The structure is very small compared to the heterogeneity size. The RF tends to be a constant field and is equivalent to a single RV with no spatial information. It represents the material scale, the validity domain of continuum damage mechanics (CDM) where the failure stress does not depend on the size of the structure (see Fig. \ref{fig:size-efect:rf2d:1}).
-  \item \emph{For $\rl \ll 1$} \\ The structure is very large compared to the heterogeneity size. The RF tends to be equivalent to a white noise (completely uncorrelated), leading to a loss of spatial structures. It represents the scale of big structures as the Weibull theory does, retrieving the linear fracture mechanic (LFM) domain of expertise (see Fig. \ref{fig:size-efect:rf2d:3}).
-  \item \emph{For $\rl \approx 1$} \\ The RF represents the missing scale range where the continuum statistical information of correlated RFs for various $\rl$ can link together material and big structure scales. Hence, it can model size effect for civil engineering structures (see Fig. \ref{fig:size-efect:rf2d:2}).
-\end{description}
-\begin{figure}[h!]
-  \centering\hspace*{\fill}
-  \subfigure[$\rl \gg 1$.\label{fig:size-efect:rf2d:1}]{\epsfig{figure=./figures/fromPhD/Lc_big.eps,width=0.3\linewidth}}\hfill
-  \subfigure[$\rl \approx 1$.\label{fig:size-efect:rf2d:2}]{\epsfig{figure=./figures/fromPhD/Lc_small.eps,width=0.3\linewidth}}\hfill
-  \subfigure[$\rl \ll 1$.\label{fig:size-efect:rf2d:3}]{\epsfig{figure=./figures/fromPhD/Lc_white_noise.eps,width=0.3\linewidth}}\hspace*{\fill}
-  \caption{Realization of two-dimensional correlated RFs for various $\rl$ ratios.\label{fig:size-efect:rf2d}}
-\end{figure}
-
-\subsection{One dimensional case}
-In this study, a one-dimensional bar in tension is considered. The source of uncertainty is modeled by a statistical representation of the local failure criterion $\slim(x,\w)$. Due to the positiveness of stress fields in tension, the \emph{log-normal} distribution is used. Since log-normal distribution is Gaussian related, the results of the previous section are applicable by a simple transformation of the hitting set $S=\exp$. The spatial structure representation is done by using correlated RF with Gaussian covariance function of correlation length $\Lc$. The continuum domain represented is a one-dimensional bar $\MRF$ of length $\Msize$. For this specific case, the global brittle failure of a bar $\MRF$ is assumed to occur when, at least, the minimum value of $\slim(x,\w)$ is reached by the stress field. If $\sfail(\w)$ is this criterion, it can be defined for a realization $i$ by: 
-\begin{equation}
-  \sfail(\w_i) = \underset{x \in \MRF_i}{\inf}\left(\slim(x,\w_i)\right).
-  \label{eq:size-effect:failure-criterion}
-\end{equation}
-It occurs that this equation can directly be linked with the Euler characteristic $\EC$ of an excursion sets. Let $\ES(\s) = \left\{x \in \MRF \ | \ 0 \le \sigma_{y}(x,\omega)\leq\s \ \right\}$ be an excursion set where the constant stress state of the bar can been seen as a level set. With this definition, the excursion set represents the part of the bar (subset of $\MRF$) where the stress is above the local failure criterion $\slim(x,\w)$. The global failure criterion of Eq. \ref{eq:size-effect:failure-criterion} can therefore be seen in terms of excursion set; $\sfail$ being the stress state when, with increasing $\s$, $\ES(\s)$ changes from being a void subset of $\MRF$ ($\EC = 0$) to a single connected component ($\EC = 1$).
-\par A result of \cite{adler_new_2008} on statistical thresholding technics links the probability of reaching these minima and the expected Euler characteristic as follows:
-\begin{equation}
-  \label{eq:size-effect:prob-failure-criterion}
-  \Proba\left\{ \underset{x\in \MRF}{\inf}\left( \slim(x,\w) \right) \leq \s \right\} \approx \Expec\left\{ \EC\left(\ES(\s)\right) \right\} \ \ \text{``for low $\sigma$''}.
-\end{equation}
-The major improvement that Eq. \ref{eq:size-effect:prob-failure-criterion} provides is the knowledge of statistical information on $\sfail(\w)$, and with it, the need of Monte Carlo simulations with actual realizations $i$ as suggested by Eq. \ref{eq:size-effect:failure-criterion}. Then, the initial failure criterion of the structure can be reformulated in terms of probability $q$. This leads to:
-\begin{equation}
-	\label{eq:size-effect:global-stress}
-	\sfail(q) = \left\{ \s \ | \ \Proba\left\{ \underset{x\in \MRF}{\inf}\left( \slim(x,\w) \right) \leq \s \right\} = q \right\}.
-\end{equation}
-The expected value of the Euler characteristic being analytically known, Eq. \ref{eq:size-effect:prob-failure-criterion} and Eq. \ref{eq:size-effect:global-stress} allow the ultimate stress criterion of the bar to be analytically determined, for a given failure probability $q$.
-\par In order to scan every observation scales possible, Eq. \ref{eq:size-effect:global-stress} is solved for a large scale range $10^{-9}\le\rl\le10^3$. Since $\Lc$ is fixed by the heterogeneity size, the different scales are therefore represented by defining a single $\slim(x,\w)$ (with the same covariance function) for various $\Msize$ as represented in Fig. \ref{fig:size-effect:1D-various-sizes}. The mean and the variance of the log-normal correlated RF have physical meaning and can be determined depending on the material characteristics. While the mean value of $\slim(x,\omega)$ determines the value of the structural failure stress of small scales ($\rl\gg1$), its variance indicates the decreasing rate of the size effect for large scales ($\rl\ll1$).
-\begin{figure}[h!]
-  \centering
-  \scalebox{0.55}{\LARGE\input{./figures/fromPhD/size_effect_1D_T}}
-  \caption{Illustration of the local failure stress repartition on structures of various sizes.\label{fig:size-effect:1D-various-sizes}}
-\end{figure}
-\par In order to validate the theoretical framework, results of the same problem solved using a Monte-Carlo stochastic integration method are also given. On the one hand, the stochastic integration provides a full empirical distribution of $\sfail(\w)$ (defined by Eq. \ref{eq:size-effect:failure-criterion}) for several ratios $\rl$. On the other hand, the analytical results of $\sfail(q)$ depends directly on the probability parameter $q$ that, by definition of the ultimate stress Eq. \ref{eq:size-effect:global-stress}, is directly linked with quantiles of the previous empirical distribution. For example, $q=1/2$ corresponds to the $2$-quantile, \ie the median.
-\par Fig. \ref{graph:size-effect:results:p} shows the resulting global failure stresses $\sfail$ for ratio $\rlinv=\rl^{-1}$ from $10^{-3}$ to $10^2$ with the Monte-Carlo method (in order to show results in the most commonly used manner, scales are represented by the inverse ratio $\rlinv=\rl^{-1}=\Msize/\Lc$). The inspection of larger scales is rapidly limited by the inconvenient resource consuming aspect of stochastic integrations. On the strength of its analytical base, the excursion set theory every scale can be inspected, here for $\rlinv$ varying from $10^{-3}$ to $10^{9}$. The Monte-Carlo integration results of global the failure stress distribution is given for the $2$, $10$, and $100$-quantile, corresponding to $q=1/2$, $1/10$, and $1/100$, respectively. In both method, the mean and the variance of the \emph{log-normal} distribution are both taken to be $10$. The \textsc{RandomFields} package \cite{schlather_randomfields:_2012} of the \textsc{R} environment \cite{team_r:_2012} has been used in order to do the stochastic integration, using $10\,000$ integration points for each length. 
-\begin{figure}[h!]
-  \centering\hspace*{\fill}
-  \subfigure[Comparison between theoretical results and Monte-Carlo simulations for various quantiles.\label{graph:size-effect:results:p}]{\scalebox{0.55}{\input{./figures/fromPhD/log_1D_MonteCarlo_p}}}\hfill
-  \subfigure[Impact of the variance on the size effect.\label{graph:size-effect:results:v}]{\scalebox{0.55}{\input{./figures/fromPhD/log_1D_var_v}}}\hspace*{\fill}
-  \caption{Representation of the size effect through a failure stress criterion estimated for various scales.\label{graph:size-effect:results}}
-\end{figure}
-\par As expected, no size effect is observed at the small scale, $\rlinv < 10^{-2}$. For $q=1/2$, the value of the failure stress corresponds to the \emph{log-normal} distribution median (that is, due to the skewness of the distribution, a little less than the mean). As $\rlinv$ grows, the decrease of $\sfail$ representing the size effect can be seen. As for the impact of $q$, results show the good behavior. Indeed, for a safety probability of $90\%$ (meaning a failure probability of $q=0.1$), the failure stress is higher than for a safety of $99\%$ ($q=0.01$). The three curves drawn in Fig. \ref{graph:size-effect:results:v} represent the impact of the variance on size effect for a failure probability $q=1/2$. While $\Lc$ is the parameter of the correlated RF that represents the geometry of the heterogeneities, the variance can be seen as a description of the mechanical property discrepancy. Results show the natural principle that higher variations are, lower the values and larger the drop of $\sfail$ are.
-\begin{figure}[!h]
-  \centering
-    \hspace*{\fill}
-  \subfigure[Variation of the quantile]{\scalebox{0.5}{\input{./figures/size_effect_failure_stress_m10_v10}}}\hfill
-  \subfigure[Variation of the variance]{\scalebox{0.5}{\input{./figures/size_effect_failure_stress_m10_q001}}} \hfill
-  \subfigure[Variation of the mean]{\scalebox{0.5}{\input{./figures/size_effect_failure_stress_v10_q001}}}\hspace*{\fill}
-  \caption{Size Effect: variations around $\meanln=10$, $\stdln^2=10$ and $q=1\%$ in 1D.}
-\end{figure}
-
-\subsection{Two dimensional case}
-\begin{figure}[!h]
-  \centering
-  \hspace*{\fill}
-  \subfigure[$\Msize=0.001$\label{fig:2D:EC:small_size}]{\scalebox{0.5}{\input{./figures/size_effect_2D_different_Euler_behaviors_l0.001}}}\hfill
-%  \subfigure[$\Msize=0.8$]  {\scalebox{0.5}{\input{./figures/size_effect_2D_different_Euler_behaviors_l0.8}}}\\
-  \subfigure[$\Msize=2.5$\label{fig:2D:EC:medium_size}]  {\scalebox{0.5}{\input{./figures/size_effect_2D_different_Euler_behaviors_l2.5}}}\hfill
-  \subfigure[$\Msize=8$\label{fig:2D:EC:large_size}]    {\scalebox{0.5}{\input{./figures/size_effect_2D_different_Euler_behaviors_l8}}}  \hspace*{\fill}
-  \caption{Euler characteristic for different specimen sizes $\Msize$ for $\meanln=0.5$, $\stdln^2=2$, $\Lc=1$, and $\HS=\zu$ (lognormal distribution with cumulative hitting set) in a 2D.\label{fig:2D:EC}}
-\end{figure}
-
-\begin{itemize}
-  \item [\ref{fig:2D:EC:small_size}] Small sizes \\ \textbf{Direct percolation}. The first (and only) $\lset(\EC==q)$ correspond to the probability $q$ of percolation. There is only one disconnected element in the excursion set.
-  \item [\ref{fig:2D:EC:medium_size}] Medium sizes \\ 
-  \item [\ref{fig:2D:EC:large_size}] Large sizes \\ 
-\end{itemize}
-
-
-\subsection{Three dimensional case}
-\begin{figure}[!h]
-  \centering
-    \hspace*{\fill}
-  \subfigure{\scalebox{0.5}{\input{./figures/elkc_th_3D_lognormal_0_constant_ratio}}}\hfill
-  \subfigure{\scalebox{0.5}{\input{./figures/elkc_th_3D_lognormal_0_constant_area}}}\hspace*{\fill}
-  \caption{.}
-\end{figure}
-
-                                                                                             
-\bibliographystyle{ieeetr} % number, appearance order                                       
-%\bibliographystyle{abbrv} % number, alphabetical order                                      
-%\bibliographystyle{apalike} % full name, alphabetical order                     
-%\bibliographystyle{alpha} % 3 letter name, alphabetical order                               
-\bibliography{inc/biblio}                                                                          
 
 \end{document}

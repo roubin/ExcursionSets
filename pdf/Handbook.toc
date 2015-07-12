@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Priliminary calculations}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Differentiation under the integral sign}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Functions}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Lipschitz-Killing curvatures (LKC)}{2}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Volume of the unit ball}{3}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Probabilistic Hermite polynomials}{3}{subsection.1.5}
+\contentsline {subsection}{\numberline {1.6}Flag coefficients}{3}{subsection.1.6}
+\contentsline {subsection}{\numberline {1.7}Second spectral moment}{4}{subsection.1.7}
+\contentsline {section}{\numberline {2}Gaussian Minkowsky functionals}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Preliminary}{4}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Gaussian measure: $ \gamma ^k( \mathcal {H} )$}{4}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Tube Taylor expansion}{4}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}GMFs for Gaussian distribution}{4}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Application to: $k=1$ and $ \mathcal {H} = [ \kappa \ \infty ) $}{4}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Application to: $k=1$ and $ \mathcal {H} = (-\infty \ \kappa ] $}{5}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Application to: $k\in \mathbb {N}^* $ and $ \mathcal {H} = \mathbb {R} ^k \delimiter "026E30F \mathcal {B}_{ \mathbb {R} ^k }\left (0, \kappa \right )$}{7}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}Application to: $k\in \mathbb {N}^* $ for various $ \mathcal {H} $}{8}{subsubsection.2.2.4}
+\contentsline {subsection}{\numberline {2.3}GMFs for Gaussian related Random Fields}{8}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Log-normal distribution}{8}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}$\chi ^2_k$ distribution}{9}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}Expectation Formula}{11}{section.3}
+\contentsline {subsection}{\numberline {3.1}General case}{11}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}One dimension}{11}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Two dimensions}{12}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Three dimensions}{13}{subsubsection.3.3.1}

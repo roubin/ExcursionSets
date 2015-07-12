@@ -11,6 +11,10 @@ endif
 
 
 all:
+	@${texsrc}latex ${name}.tex
+	@make pdf
+
+FULL:
 	@make clean
 	@make ref
 	@make pdf
@@ -22,8 +26,8 @@ pdf:
 
 ref:
 	@${texsrc}latex ${name}.tex
-	@${texsrc}bibtex ${name}
-	@${texsrc}latex ${name}.tex
+#	@${texsrc}bibtex ${name}
+#	@${texsrc}latex ${name}.tex
 	@${texsrc}latex ${name}.tex
 	@${texsrc}latex ${name}.tex
 
