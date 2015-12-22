@@ -32,7 +32,7 @@ x <- seq(0, size[1], step)
 y <- seq(0, size[2], step) 
 z <- seq(0, size[3], step) 
 
-RF <- GaussRF(method=method, x=x, y=y, z=z, n=n_rea, model=model, grid=TRUE, param=param)
+RF <- RFsimulate(method=method, x=x, y=y, z=z, n=n_rea, model=model, grid=TRUE, param=param)
 
 #setEPS()
 #postscript("output/gaussian_random_fields.eps")

@@ -1,10 +1,11 @@
-CreateVTKFile<-function(RF,T,dim){
+CreateVTKFile<-function(RF,T,dim, RFName){
 library('pracma')
 
 #RANDOM FIELD NAME
-	RFName <- paste("RF_T",T,sep="")
+	#RFName <- paste("RF_T",T,sep="")
 #FILE NAME
-	FileName <- paste(RFName, ".vtk", sep="")
+	FileName <- paste(RFName, ".vtk", sep=" ")
+	print(paste('Writing VTK file', FileName, sep=""))
 #RANDOM FIELD SIZE 1D
 	if ( dim == 1 ) {
 		N <- length(RF)
@@ -39,9 +40,9 @@ library('pracma')
 		c <- sort(b)
 		coord <- cbind(a,b,c)
 
-		RFName <- paste("RF_Tx",Tx,sep="")
-		RFName <- paste(RFName,Ty,sep="_Ty")
-		RFName <- paste(RFName,Tz,sep="_Tz")
+		#RFName <- paste("RF_Tx",Tx,sep="")
+		#RFName <- paste(RFName,Ty,sep="_Ty")
+		#RFName <- paste(RFName,Tz,sep="_Tz")
 		#FILE NAME
 		FileName <- paste(RFName, ".vtk", sep="")
 
@@ -69,5 +70,7 @@ library('pracma')
 	write(RF, file = myFile, ncolumns = 1, append = FALSE, sep = "\t")
 
 	close(myFile)
+	
+	print('done')
 
 }

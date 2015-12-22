@@ -19,3 +19,4 @@ Thumbs.db
 *.vtk
 tests/*/output/*
 cran-r/output/*
+cran-r/.Rhistory
